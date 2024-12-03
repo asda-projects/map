@@ -6,7 +6,15 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **reproduce-route**:  Add reproduce route to download and serve audio files ([fd65676](fd65676f3f45a77afde118a838f71c926427ed69))
+-   **reproduce-route**:  Add reproduce route to download and serve audio files ([6b9b4f5](6b9b4f50ad9be7cf6a8da0f3eaef7fe08698fa78))
+
+### <!-- 1 -->🐛 Bug Fixes
+
+-   App.py file was empty, so was full filled with the right code ([371eaea](371eaeaa7c10ff17bff72f3dc052cf196d1f2062))
+
+### Build
+
+-   Created frontend and backend dir for organize the structure of the app for building stages ([9b3ad32](9b3ad328c63a5dee3e23cf9c5ccc648d37d10a53))
 
 ### Merge
 
