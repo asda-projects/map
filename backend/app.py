@@ -5,7 +5,19 @@ import subprocess
 from youtube_search import YoutubeSearch
 from ftfy import fix_text
 
+from duckduckgo_search import ddg_images
+
+
+
+
 app = Flask(__name__)
+
+
+def search_images(query, max_results=10):
+    """Search for safe images using DuckDuckGo."""
+    results = ddg_images(query, max_results=max_results, safesearch="On")
+    return [result['image'] for result in results]
+
 
 @app.route('/stream/<video_id>')
 def stream_audio(video_id):
