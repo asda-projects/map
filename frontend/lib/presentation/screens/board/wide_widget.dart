@@ -22,7 +22,7 @@ class WideWidgetState extends State<WideWidget> with TickerProviderStateMixin {
             spawnMaxSpeed: 20,
             minOpacity: 0.3,
             spawnOpacity: 0.4,
-            baseColor: Theme.of(context).colorScheme.tertiary,
+            
             // image: Image(image: AssetImage('assets/images/elephant.png')),
           ),
         ),

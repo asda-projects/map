@@ -1,9 +1,9 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:frontend/screens/board/small_widget.dart';
-import 'package:frontend/screens/board/wide_widget.dart';
-import 'package:frontend/screens/utils/adjuster.dart';
+import 'package:frontend/presentation/screens/board/small_widget.dart';
+import 'package:frontend/presentation/screens/board/wide_widget.dart';
+import 'package:frontend/presentation/screens/utils/adjuster.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});
