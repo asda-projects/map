@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **basis**:  Add backend and frontend initial configurations ([343d96b](343d96befb4ad336cbdd86771cb105deafc3c783))
+-   **frontend**:  Created a screen adjuster to handle with screen size app ([fd16b0a](fd16b0af88ddbb3c5022a88ce9894338b3b2466c))
+-   **basis**:  Add backend and frontend initial configurations ([c8f027d](c8f027dd81b9147474b29cfd20e477ad6a9fb0a2))
 -   **reproduce-route**:  Add reproduce route to download and serve audio files ([6b9b4f5](6b9b4f50ad9be7cf6a8da0f3eaef7fe08698fa78))
 
 ### <!-- 1 -->🐛 Bug Fixes

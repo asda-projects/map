@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/board/on_board.dart';
 
 
 class App extends StatefulWidget {
@@ -14,12 +15,10 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'HeartBeats',
-        home: Container(
-          child: Text("Hello World!"),
-        )
+        home: OnBoardScreen()
       
     );
   }
