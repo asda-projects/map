@@ -5,6 +5,7 @@ import 'package:frontend/domain/utils/theme.dart';
 import 'package:frontend/presentation/screens/board/on_board.dart';
 
 
+
 class App extends StatefulWidget {
   const App({super.key});
 
@@ -16,6 +17,8 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    
+
     return  MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme, // Apply the light theme

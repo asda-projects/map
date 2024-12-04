@@ -39,7 +39,7 @@ class AppTheme {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: primaryColor,
       secondary: secondaryColor,
-      surface: Colors.white,
+      surface: Colors.black,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
     ),

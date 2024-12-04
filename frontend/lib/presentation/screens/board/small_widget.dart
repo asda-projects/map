@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend/domain/utils/paths.dart';
 
+
 class SmallWidget extends StatefulWidget {
   const SmallWidget({super.key});
 
@@ -44,13 +45,26 @@ class SmallWidgetState extends State<SmallWidget> {
           ),
 
            // Optional: Center the logo
-        )),
-        body: Center(
+        ),
+      
+        ),
+
+        body: SingleChildScrollView(
+          child: Column( 
+            children: [ 
+              Center(
           child: SvgPicture.asset(
             '${DirPath.media}on_board_background.svg', // Path to your logo
             height: 500, // Adjust size
-          ),
+          )),
+          
+         Text(
+          "text for test",
+          style: const TextStyle(fontSize: 24, color: Colors.black),
         ),
+      
+          
+          ])),
       )]);
 
   }
