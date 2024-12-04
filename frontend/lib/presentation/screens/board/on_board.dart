@@ -6,18 +6,24 @@ import 'package:frontend/presentation/screens/board/wide_widget.dart';
 import 'package:frontend/presentation/utils/screen_adjuster.dart';
 
 class OnBoardScreen extends StatefulWidget {
-  const OnBoardScreen({super.key});
+  final Function(Locale) onLocaleChange;
+
+  const OnBoardScreen({
+    super.key, 
+    required this.onLocaleChange
+    });
 
   @override
   OnBoardScreenState createState() => OnBoardScreenState();
 }
 
 class OnBoardScreenState extends State<OnBoardScreen>  {
+
   @override
   Widget build(BuildContext context) {
 
     final adjuster = ScreenAdjuster<Widget>(
-      smallWidget: const SmallWidget(),
+      smallWidget: SmallWidget(onLocaleChange: widget.onLocaleChange),
       wideWidget: const WideWidget(),
       threshold: 800, // Customize threshold for responsiveness
     );

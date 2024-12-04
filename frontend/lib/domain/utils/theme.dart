@@ -32,6 +32,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
       ),
     ),
+    
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: Colors.black),
       bodyMedium: TextStyle(color: Colors.black),

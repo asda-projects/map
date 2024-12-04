@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Started process for change language on app ([1a53caf](1a53cafa29476c62975c5bfbf07b0e2d2c9b2b8a))
+-   **frontend**:  First screen on board basically finished ([f7d2093](f7d20936de8fc570bef795173a2371d9ffe3da2f))
+-   **frontend**:  Started process for change language on app ([8007786](8007786a35857e6f8d7baa3e2ce85f221cdcfd53))
 -   **frontend**:  On board page initially created with svg simplicity ([72d7cf0](72d7cf0ea455968e34a6f51fc9bffd9b815bd3ae))
 -   **frontend**:  Created a screen adjuster to handle with screen size app ([850c660](850c660ccd10f1772e6d4e759c4ebe50a87ce85f))
 -   **basis**:  Add backend and frontend initial configurations ([c8f027d](c8f027dd81b9147474b29cfd20e477ad6a9fb0a2))
