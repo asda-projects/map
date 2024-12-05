@@ -23,6 +23,11 @@ class SmallWidgetAuth extends StatefulWidget {
 
 class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderStateMixin {
 
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final bool _isLoading = false;
+
   
 
 
@@ -97,6 +102,142 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
         ],
       ),
     ),
+    
+    Spacer(),
+    Form(
+        key: _formKey,
+          child: Center(
+            child: FractionallySizedBox(
+              widthFactor: 0.75, // Form width proportional to the screen
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Space items evenly
+                crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch elements to fill width
+                children: [
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                    labelText: "Email",
+                    hintText: "Enter your email",
+                    filled: true,
+                    fillColor: Colors.grey[200], // Background color
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5), // Rounded corners
+                      borderSide: BorderSide(color: Colors.blueGrey), // Border color
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5), // Rounded corners for focused state
+                      borderSide: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2), // Border color when focused
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5), // Default border corners
+                      borderSide: BorderSide(color: Colors.grey), // Default border color
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5), // Error border corners
+                      borderSide: BorderSide(color: Colors.red), // Error border color
+                    ),
+                  ),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  SizedBox(height: 12),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                    labelText: "Password",
+                    hintText: "Enter your password",
+                    filled: true,
+                    fillColor: Colors.grey[200], // Background color
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5), // Rounded corners
+                      borderSide: BorderSide(color: Colors.blueGrey), // Border color
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5), // Rounded corners for focused state
+                      borderSide: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2), // Border color when focused
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5), // Default border corners
+                      borderSide: BorderSide(color: Colors.grey), // Default border color
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5), // Error border corners
+                      borderSide: BorderSide(color: Colors.red), // Error border color
+                    ),
+                  ),
+                    obscureText: true,
+
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween, // Centers the text horizontally
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          // Action for first text
+                          
+                        },
+                        child: Text(
+                          "Forgot Password?",
+                          style: TextStyle(
+                            color: Colors.blue, // Makes the text look clickable
+                          ),
+                        ),
+                      ),
+                      //SizedBox(width: 10), // Spacing between the texts
+                      GestureDetector(
+                        onTap: () {
+                          // Action for second text
+                          
+                        },
+                        child: Text(
+                          "I do not Have account yet!",
+                          style: TextStyle(
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  _isLoading
+                      ? CircularProgressIndicator()
+                      : ElevatedButton.icon(
+                        onPressed: () {
+                          
+                        },
+                        icon: const Icon(Icons.double_arrow_sharp),
+                        label: Text(
+                          S.of(context).login,
+                          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.transparent,
+                          
+                          backgroundColor: Theme.of(context).colorScheme.onSurface,
+                          shape: RoundedRectangleBorder(
+                            //side: BorderSide(color: Theme.of(context).colorScheme.onSurface),
+                            borderRadius: BorderRadius.circular(5), // Rounded corners
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 50,
+                            vertical: 20,
+                          ), // Padding inside the button
+                        ),
+                      ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      Spacer(),
+          Divider(
+          color: Colors.grey,
+          thickness: 1,
+          indent: 20.0,
+          endIndent: 20.0,
+        ),
+
           Spacer(),
          ElevatedButton.icon(
             onPressed: () {
@@ -149,67 +290,10 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
               ), // Padding inside the button
             ),
           ),
-          Spacer(),
-          Divider(
-          color: Colors.grey,
-          thickness: 1,
-          indent: 20.0,
-          endIndent: 20.0,
-        ),
+          
       
-          Spacer(),
-          ElevatedButton.icon(
-            onPressed: () {
-              
-            },
-            icon: FaIcon(
-              FontAwesomeIcons.google
-            ), // Your icon
-            label: Text(
-               S.of(context).signUpWith("Google"),
-               style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-            ),
-            style: ElevatedButton.styleFrom(
-              shadowColor: Colors.transparent,
-              
-              backgroundColor: Theme.of(context).colorScheme.onSurface,
-              shape: RoundedRectangleBorder(
-                // side: BorderSide(color: Theme.of(context).colorScheme.onSurface),
-                borderRadius: BorderRadius.circular(5), // Rounded corners
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 50,
-                vertical: 20,
-              ), // Padding inside the button
-            ),
-          ),
-         Spacer(),
-         ElevatedButton.icon(
-            onPressed: () {
-              
-            },
-            icon: FaIcon(
-              FontAwesomeIcons.facebook
-            ), // Your icon
-            label: Text(
-               S.of(context).signUpWith("Facebook"),
-               style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-            ),
-            style: ElevatedButton.styleFrom(
-              shadowColor: Colors.transparent,
-              
-              backgroundColor: Theme.of(context).colorScheme.onSurface,
-              shape: RoundedRectangleBorder(
-                //side: BorderSide(color: Theme.of(context).colorScheme.onSurface),
-                borderRadius: BorderRadius.circular(5), // Rounded corners
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 50,
-                vertical: 20,
-              ), // Padding inside the button
-            ),
-          ),
           Spacer()
+          
           ]))))))]);
 
   }

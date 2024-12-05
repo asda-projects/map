@@ -55,17 +55,18 @@ class SmallWidgetBoardState extends State<SmallWidgetBoard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [ 
+              SizedBox(height: 70),
               Center(
           child: SvgPicture.asset(
             '${DirPath.media}slogan.svg', // Path to your logo
-            height: 500, // Adjust size
+            height: 400, // Adjust size
           )),
-          SizedBox(height: 70),
+          SizedBox(height: 100),
          ElevatedButton.icon(
             onPressed: () {
               AppNavigation.navigateToPage(
                 context,
-                'OnLoginScreen',
+                'OnAuthScreen',
                 arguments: {
                   'onLocaleChange': widget.onLocaleChange
                 },

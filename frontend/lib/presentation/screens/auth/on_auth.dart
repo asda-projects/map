@@ -7,19 +7,19 @@ import 'package:frontend/presentation/screens/auth/small_widget_auth.dart';
 import 'package:frontend/presentation/screens/auth/wide_widget_auth.dart';
 import 'package:frontend/presentation/utils/screen_adjuster.dart';
 
-class OnLoginScreen extends StatefulWidget {
+class OnAuthScreen extends StatefulWidget {
   final Function(Locale) onLocaleChange;
 
-  const OnLoginScreen({
+  const OnAuthScreen({
     super.key, 
     required this.onLocaleChange
     });
 
   @override
-  OnLoginScreenState createState() => OnLoginScreenState();
+  OnAuthScreenState createState() => OnAuthScreenState();
 }
 
-class OnLoginScreenState extends State<OnLoginScreen>  {
+class OnAuthScreenState extends State<OnAuthScreen>  {
 
   @override
   Widget build(BuildContext context) {

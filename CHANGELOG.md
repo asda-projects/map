@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Concluded intersection between board and auth screen ([6ba63d1](6ba63d1a1e9200ec8ef93df7ade837a8f5a5e02e))
+-   **frontend**:  Add login/signup form text on auth screen ([330a732](330a7328b8cb8769bf99f0b6f1c23a19ea871b32))
+-   **frontend**:  Concluded intersection between board and auth screen ([7394d4b](7394d4b53b14c97df6d40e43f64e40925279400b))
 -   **frontend**:  First screen on board basically finished ([50acd83](50acd835bc66f46de52dc07c164e147e2aac65fd))
 -   **frontend**:  Started process for change language on app ([8007786](8007786a35857e6f8d7baa3e2ce85f221cdcfd53))
 -   **frontend**:  On board page initially created with svg simplicity ([72d7cf0](72d7cf0ea455968e34a6f51fc9bffd9b815bd3ae))

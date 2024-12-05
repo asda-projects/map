@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/presentation/screens/login/on_login.dart';
+import 'package:frontend/presentation/screens/auth/on_auth.dart';
 
 class AppNavigation {
   // Define a method to store page mappings with builders
   static Widget? getPage(String pageName, {Map<String, dynamic>? arguments}) {
     final pages = {
-      "OnLoginScreen": () => OnLoginScreen(
+      "OnAuthScreen": () => OnAuthScreen(
             onLocaleChange: arguments?['onLocaleChange'], // Pass specific argument
           ),
     };
