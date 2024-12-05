@@ -5,5 +5,11 @@
   "loginWith": "เข้าสู่ระบบด้วย {provider}",
   "listenMusic": "ฟังเพลง",
   "signUp": "สมัครสมาชิก",
-  "signUpWith": "สมัครสมาชิกด้วย {provider}"
+  "signUpWith": "สมัครสมาชิกด้วย {provider}",
+  "email": "อีเมล",
+  "emailTip":"nickname@example.com",
+  "password": "รหัสผ่าน",
+  "passwordTip": "8+ ตัวอักษร, 1 ตัวพิมพ์ใหญ่, 1 ตัวพิมพ์เล็ก, 1 ตัวเลข, 1 สัญลักษณ์ (@, #, $)",
+  "forgotPwd": "ลืมรหัสผ่าน?",
+  "noAccount": "ฉันไม่มีบัญชี!"
 }

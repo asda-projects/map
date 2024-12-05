@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Add login/signup form text on auth screen ([330a732](330a7328b8cb8769bf99f0b6f1c23a19ea871b32))
+-   **frontend**:  Added translation on auth screen ([51bbe37](51bbe3777faaa2a8e239914772c5b20287f1dd56))
+-   **frontend**:  Add login/signup form text on auth screen ([69380ec](69380ec32d292b4e4aead10e01b8da038845925c))
 -   **frontend**:  Concluded intersection between board and auth screen ([7394d4b](7394d4b53b14c97df6d40e43f64e40925279400b))
 -   **frontend**:  First screen on board basically finished ([50acd83](50acd835bc66f46de52dc07c164e147e2aac65fd))
 -   **frontend**:  Started process for change language on app ([8007786](8007786a35857e6f8d7baa3e2ce85f221cdcfd53))

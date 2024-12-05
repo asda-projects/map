@@ -116,8 +116,8 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                   TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                    labelText: "Email",
-                    hintText: "Enter your email",
+                    labelText:  S.of(context).email,
+                    hintText:  S.of(context).emailTip,
                     filled: true,
                     fillColor: Colors.grey[200], // Background color
                     border: OutlineInputBorder(
@@ -143,8 +143,8 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
-                    labelText: "Password",
-                    hintText: "Enter your password",
+                    labelText: S.of(context).password,
+                    hintText: S.of(context).passwordTip,
                     filled: true,
                     fillColor: Colors.grey[200], // Background color
                     border: OutlineInputBorder(
@@ -178,7 +178,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                           
                         },
                         child: Text(
-                          "Forgot Password?",
+                          S.of(context).forgotPwd,
                           style: TextStyle(
                             color: Colors.blue, // Makes the text look clickable
                           ),
@@ -191,7 +191,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                           
                         },
                         child: Text(
-                          "I do not Have account yet!",
+                          S.of(context).noAccount,
                           style: TextStyle(
                             color: Colors.blue,
                           ),

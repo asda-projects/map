@@ -5,5 +5,11 @@
   "loginWith": "Login with {provider}",
   "listenMusic": "Listen music",
   "signUp":"Sign Up",
-  "signUpWith": "Sign Up with {provider}"
+  "signUpWith": "Sign Up with {provider}",
+  "email": "Email",
+  "emailTip":"nickname@example.com",
+  "password": "Password",
+  "passwordTip": "8+ chars, 1 uppercase, 1 lowercase, 1 number, 1 symbol (@, #, $).",
+  "forgotPwd": "Forgot password?",
+  "noAccount": "I do not have account!"
 }

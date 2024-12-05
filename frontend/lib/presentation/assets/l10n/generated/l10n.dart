@@ -109,6 +109,66 @@ class S {
       args: [provider],
     );
   }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `nickname@example.com`
+  String get emailTip {
+    return Intl.message(
+      'nickname@example.com',
+      name: 'emailTip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `8+ chars, 1 uppercase, 1 lowercase, 1 number, 1 symbol (@, #, $).`
+  String get passwordTip {
+    return Intl.message(
+      '8+ chars, 1 uppercase, 1 lowercase, 1 number, 1 symbol (@, #, \$).',
+      name: 'passwordTip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot password?`
+  String get forgotPwd {
+    return Intl.message(
+      'Forgot password?',
+      name: 'forgotPwd',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I do not have account!`
+  String get noAccount {
+    return Intl.message(
+      'I do not have account!',
+      name: 'noAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
