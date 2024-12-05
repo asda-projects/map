@@ -1,6 +1,9 @@
 {
   "@@locale": "pt",
-  "selectedLanguage": "Língua",
+  "selectedLanguage": "Idioma",
   "login": "Acessar",
-  "listenMusic": "Ouvir músicas"
+  "loginWith": "Acessar com {provider}",
+  "listenMusic": "Ouvir músicas",
+  "signUp": "Registrar-se",
+  "signUpWith": "Registrar-se com {provider}"
 }

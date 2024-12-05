@@ -2,14 +2,14 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 
-class WideWidget extends StatefulWidget {
-  const WideWidget({super.key});
+class WideWidgetBoard extends StatefulWidget {
+  const WideWidgetBoard({super.key});
 
   @override
-  WideWidgetState createState() => WideWidgetState();
+  WideWidgetBoardState createState() => WideWidgetBoardState();
 }
 
-class WideWidgetState extends State<WideWidget> with TickerProviderStateMixin {
+class WideWidgetBoardState extends State<WideWidgetBoard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     

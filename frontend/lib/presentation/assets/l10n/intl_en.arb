@@ -2,5 +2,8 @@
   "@@locale": "en",
   "selectedLanguage": "Language",
   "login": "Login",
-  "listenMusic": "Listen music"
+  "loginWith": "Login with {provider}",
+  "listenMusic": "Listen music",
+  "signUp":"Sign Up",
+  "signUpWith": "Sign Up with {provider}"
 }

@@ -134,6 +134,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/pong/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "glob",
       "rootUri": "file:///Users/pong/.pub-cache/hosted/pub.dev/glob-2.1.2",
       "packageUri": "lib/",
@@ -362,7 +368,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-04T05:13:14.226299Z",
+  "generated": "2024-12-05T05:23:37.760304Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///usr/local/flutter",

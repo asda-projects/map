@@ -1,8 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:frontend/presentation/screens/board/small_widget.dart';
-import 'package:frontend/presentation/screens/board/wide_widget.dart';
+import 'package:frontend/presentation/screens/board/small_widget_board.dart';
+import 'package:frontend/presentation/screens/board/wide_widget_board.dart';
 import 'package:frontend/presentation/utils/screen_adjuster.dart';
 
 class OnBoardScreen extends StatefulWidget {
@@ -23,8 +23,8 @@ class OnBoardScreenState extends State<OnBoardScreen>  {
   Widget build(BuildContext context) {
 
     final adjuster = ScreenAdjuster<Widget>(
-      smallWidget: SmallWidget(onLocaleChange: widget.onLocaleChange),
-      wideWidget: const WideWidget(),
+      smallWidget: SmallWidgetBoard(onLocaleChange: widget.onLocaleChange),
+      wideWidget: const WideWidgetBoard(),
       threshold: 800, // Customize threshold for responsiveness
     );
     

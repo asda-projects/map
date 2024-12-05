@@ -70,6 +70,16 @@ class S {
     );
   }
 
+  /// `Login with {provider}`
+  String loginWith(Object provider) {
+    return Intl.message(
+      'Login with $provider',
+      name: 'loginWith',
+      desc: '',
+      args: [provider],
+    );
+  }
+
   /// `Listen music`
   String get listenMusic {
     return Intl.message(
@@ -77,6 +87,26 @@ class S {
       name: 'listenMusic',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up with {provider}`
+  String signUpWith(Object provider) {
+    return Intl.message(
+      'Sign Up with $provider',
+      name: 'signUpWith',
+      desc: '',
+      args: [provider],
     );
   }
 }

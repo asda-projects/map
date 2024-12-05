@@ -6,9 +6,11 @@ import 'package:frontend/domain/utils/paths.dart';
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   
   final Function(Locale) onLocaleChange;
+  final Color? logoColor;
 
   const MyAppBar({
-    super.key, required this.onLocaleChange
+    super.key, required this.onLocaleChange,
+    this.logoColor
     });
 
   @override
@@ -21,11 +23,12 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 class MyAppBarState extends State<MyAppBar>  {
 
   Locale _selectedLocale = Locale('en');
+  
 
   @override
   Widget build(BuildContext context) {
 
-    
+    final color = widget.logoColor ?? Theme.of(context).colorScheme.onSurface;
     
     return AppBar(
           backgroundColor: Colors.transparent,
@@ -33,7 +36,11 @@ class MyAppBarState extends State<MyAppBar>  {
             alignment: Alignment.center, // Ensures the logo is aligned to the left
             child: SvgPicture.asset(
             '${DirPath.media}logo.svg', // Path to your logo
-            height: 40, // Adjust size
+            height: 40,
+            colorFilter: ColorFilter.mode(
+            color, // Apply the color here
+            BlendMode.srcIn, // Commonly used blend mode for icons
+          ),
           ),
 
            // Optional: Center the logo

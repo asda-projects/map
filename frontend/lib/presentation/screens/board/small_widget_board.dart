@@ -5,22 +5,24 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend/domain/utils/paths.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 import 'package:frontend/presentation/boilerplate/app_bar.dart';
+import 'package:frontend/presentation/utils/navigation.dart';
 
 
-class SmallWidget extends StatefulWidget {
+class SmallWidgetBoard extends StatefulWidget {
   final Function(Locale) onLocaleChange;
 
-  const SmallWidget({
+  const SmallWidgetBoard({
     super.key, required this.onLocaleChange
     });
 
   @override
-  SmallWidgetState createState() => SmallWidgetState();
+  SmallWidgetBoardState createState() => SmallWidgetBoardState();
 }
 
-class SmallWidgetState extends State<SmallWidget> {
+class SmallWidgetBoardState extends State<SmallWidgetBoard> {
 
   
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,13 +57,19 @@ class SmallWidgetState extends State<SmallWidget> {
             children: [ 
               Center(
           child: SvgPicture.asset(
-            '${DirPath.media}on_board_background.svg', // Path to your logo
+            '${DirPath.media}slogan.svg', // Path to your logo
             height: 500, // Adjust size
           )),
           SizedBox(height: 70),
          ElevatedButton.icon(
             onPressed: () {
-              // Define what happens when the button is pressed
+              AppNavigation.navigateToPage(
+                context,
+                'OnLoginScreen',
+                arguments: {
+                  'onLocaleChange': widget.onLocaleChange
+                },
+              );
             },
             icon: const Icon(Icons.music_note_sharp), // Your icon
             label: Text(

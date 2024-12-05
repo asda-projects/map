@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  First screen on board basically finished ([f7d2093](f7d20936de8fc570bef795173a2371d9ffe3da2f))
+-   **frontend**:  Concluded intersection between board and auth screen ([6ba63d1](6ba63d1a1e9200ec8ef93df7ade837a8f5a5e02e))
+-   **frontend**:  First screen on board basically finished ([50acd83](50acd835bc66f46de52dc07c164e147e2aac65fd))
 -   **frontend**:  Started process for change language on app ([8007786](8007786a35857e6f8d7baa3e2ce85f221cdcfd53))
 -   **frontend**:  On board page initially created with svg simplicity ([72d7cf0](72d7cf0ea455968e34a6f51fc9bffd9b815bd3ae))
 -   **frontend**:  Created a screen adjuster to handle with screen size app ([850c660](850c660ccd10f1772e6d4e759c4ebe50a87ce85f))
