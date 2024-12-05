@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:frontend/domain/utils/paths.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 import 'package:frontend/presentation/boilerplate/app_bar.dart';
+import 'package:frontend/presentation/boilerplate/glowing_button.dart';
 import 'package:frontend/presentation/utils/navigation.dart';
 
 
@@ -40,7 +41,7 @@ class SmallWidgetBoardState extends State<SmallWidgetBoard> {
                 colors: [
                   Theme.of(context).colorScheme.primary,
                   Theme.of(context).colorScheme.primary.withOpacity(0.7),
-                  Colors.white, // Fade to red at the edges
+                  Theme.of(context).colorScheme.onSecondary, // Fade to red at the edges
                 ],
                 stops: [0.07, 0.1, 0.28], // Control the gradient spread
               ),
@@ -62,7 +63,7 @@ class SmallWidgetBoardState extends State<SmallWidgetBoard> {
             height: 400, // Adjust size
           )),
           SizedBox(height: 100),
-         ElevatedButton.icon(
+         GlowingButton(
             onPressed: () {
               AppNavigation.navigateToPage(
                 context,
@@ -72,21 +73,17 @@ class SmallWidgetBoardState extends State<SmallWidgetBoard> {
                 },
               );
             },
-            icon: const Icon(Icons.music_note_sharp), // Your icon
-            label: Text(
-               S.of(context).listenMusic,
-               style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.onSurface,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5), // Rounded corners
+            icon: Icon(
+              Icons.music_note_sharp,
+              color: Theme.of(context).colorScheme.onSecondary,
+              ), // Your icon
+            text: Text(
+              S.of(context).listenMusic,
+              style: TextStyle(
+                fontSize: 14, 
+                color: Theme.of(context).colorScheme.onSecondary
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 20,
-              ), // Padding inside the button
-            ),
+              ),
           ),
       
           

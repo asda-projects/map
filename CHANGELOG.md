@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Added translation on auth screen ([51bbe37](51bbe3777faaa2a8e239914772c5b20287f1dd56))
+-   **frontend**:  Created a animanted glowing button for board screen ([a6ed523](a6ed523ec68ddb77c15f4ac98d0c94cbef8ca376))
+-   **frontend**:  Added translation on auth screen ([a537528](a53752858d3786289ebfef5f811333520d4a2d43))
 -   **frontend**:  Add login/signup form text on auth screen ([69380ec](69380ec32d292b4e4aead10e01b8da038845925c))
 -   **frontend**:  Concluded intersection between board and auth screen ([7394d4b](7394d4b53b14c97df6d40e43f64e40925279400b))
 -   **frontend**:  First screen on board basically finished ([50acd83](50acd835bc66f46de52dc07c164e147e2aac65fd))
