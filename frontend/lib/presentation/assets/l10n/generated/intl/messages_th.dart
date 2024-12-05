@@ -30,6 +30,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailTip":
             MessageLookupByLibrary.simpleMessage("nickname@example.com"),
         "forgotPwd": MessageLookupByLibrary.simpleMessage("ลืมรหัสผ่าน?"),
+        "invalidEmail":
+            MessageLookupByLibrary.simpleMessage("กรุณากรอกอีเมลที่ถูกต้อง."),
+        "invalidForm": MessageLookupByLibrary.simpleMessage(
+            "แบบฟอร์มไม่ถูกต้อง! กรุณาตรวจสอบข้อมูลในช่องกรอก"),
+        "invalidFormat":
+            MessageLookupByLibrary.simpleMessage("รูปแบบไม่ถูกต้อง."),
+        "invalidNumber":
+            MessageLookupByLibrary.simpleMessage("กรุณากรอกตัวเลขที่ถูกต้อง."),
+        "invalidPassword":
+            MessageLookupByLibrary.simpleMessage("รหัสผ่านไม่ถูกต้อง."),
         "listenMusic": MessageLookupByLibrary.simpleMessage("ฟังเพลง"),
         "login": MessageLookupByLibrary.simpleMessage("เข้าสู่ระบบ"),
         "loginWith": m0,
@@ -37,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("รหัสผ่าน"),
         "passwordTip": MessageLookupByLibrary.simpleMessage(
             "8+ ตัวอักษร, 1 ตัวพิมพ์ใหญ่, 1 ตัวพิมพ์เล็ก, 1 ตัวเลข, 1 สัญลักษณ์ (@, #, \$)"),
+        "requiredField":
+            MessageLookupByLibrary.simpleMessage("ช่องนี้จำเป็นต้องกรอก."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("ภาษา"),
         "signUp": MessageLookupByLibrary.simpleMessage("สมัครสมาชิก"),
         "signUpWith": m1

@@ -30,6 +30,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailTip":
             MessageLookupByLibrary.simpleMessage("nickname@example.com"),
         "forgotPwd": MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "invalidEmail":
+            MessageLookupByLibrary.simpleMessage("Enter a valid email."),
+        "invalidForm": MessageLookupByLibrary.simpleMessage(
+            "Form is invalid! Please check the fields."),
+        "invalidFormat":
+            MessageLookupByLibrary.simpleMessage("Invalid format."),
+        "invalidNumber":
+            MessageLookupByLibrary.simpleMessage("Enter a valid number."),
+        "invalidPassword":
+            MessageLookupByLibrary.simpleMessage("Invalid password."),
         "listenMusic": MessageLookupByLibrary.simpleMessage("Listen music"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginWith": m0,
@@ -38,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordTip": MessageLookupByLibrary.simpleMessage(
             "8+ chars, 1 uppercase, 1 lowercase, 1 number, 1 symbol (@, #, \$)."),
+        "requiredField":
+            MessageLookupByLibrary.simpleMessage("This field is required."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("Language"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpWith": m1

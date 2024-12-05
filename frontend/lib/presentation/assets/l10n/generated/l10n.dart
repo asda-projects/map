@@ -169,6 +169,66 @@ class S {
       args: [],
     );
   }
+
+  /// `This field is required.`
+  String get requiredField {
+    return Intl.message(
+      'This field is required.',
+      name: 'requiredField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid email.`
+  String get invalidEmail {
+    return Intl.message(
+      'Enter a valid email.',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid password.`
+  String get invalidPassword {
+    return Intl.message(
+      'Invalid password.',
+      name: 'invalidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid format.`
+  String get invalidFormat {
+    return Intl.message(
+      'Invalid format.',
+      name: 'invalidFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid number.`
+  String get invalidNumber {
+    return Intl.message(
+      'Enter a valid number.',
+      name: 'invalidNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Form is invalid! Please check the fields.`
+  String get invalidForm {
+    return Intl.message(
+      'Form is invalid! Please check the fields.',
+      name: 'invalidForm',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

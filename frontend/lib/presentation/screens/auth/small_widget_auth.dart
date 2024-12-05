@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/domain/utils/paths.dart';
+import 'package:frontend/domain/utils/text_fields_validators.dart';
 
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 import 'package:frontend/presentation/boilerplate/app_bar.dart';
+import 'package:frontend/presentation/boilerplate/form_fields.dart';
 
 
 class SmallWidgetAuth extends StatefulWidget {
@@ -28,7 +30,20 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
   final TextEditingController _passwordController = TextEditingController();
   final bool _isLoading = false;
 
-  
+  void _submitForm() {
+    if (_formKey.currentState?.validate() ?? false) {
+      // Form is valid
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Form is valid!')),
+      );
+      // Process the form data (e.g., send it to a server or save locally)
+    } else {
+      // Form is invalid
+      ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(content: Text(S.of(context).invalidForm)),
+      );
+    }
+  }
 
 
   @override
@@ -113,57 +128,18 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Space items evenly
                 crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch elements to fill width
                 children: [
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
+                  CustomTextFormField(
+                    controller: _emailController,  
+                    validator: (value) => FieldValidator.email(context, value),          
                     labelText:  S.of(context).email,
-                    hintText:  S.of(context).emailTip,
-                    filled: true,
-                    fillColor: Colors.grey[200], // Background color
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5), // Rounded corners
-                      borderSide: BorderSide(color: Colors.blueGrey), // Border color
+                    hintText:  S.of(context).emailTip
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5), // Rounded corners for focused state
-                      borderSide: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2), // Border color when focused
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5), // Default border corners
-                      borderSide: BorderSide(color: Colors.grey), // Default border color
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5), // Error border corners
-                      borderSide: BorderSide(color: Colors.red), // Error border color
-                    ),
-                  ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
                   SizedBox(height: 12),
-                  TextFormField(
+                  CustomTextFormField(
                     controller: _passwordController,
-                    decoration: InputDecoration(
+                    validator: (value) => FieldValidator.password(context, value),
                     labelText: S.of(context).password,
                     hintText: S.of(context).passwordTip,
-                    filled: true,
-                    fillColor: Colors.grey[200], // Background color
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5), // Rounded corners
-                      borderSide: BorderSide(color: Colors.blueGrey), // Border color
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5), // Rounded corners for focused state
-                      borderSide: BorderSide(color: Theme.of(context).colorScheme.primary, width: 2), // Border color when focused
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5), // Default border corners
-                      borderSide: BorderSide(color: Colors.grey), // Default border color
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5), // Error border corners
-                      borderSide: BorderSide(color: Colors.red), // Error border color
-                    ),
-                  ),
                     obscureText: true,
 
                   ),
@@ -203,9 +179,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                   _isLoading
                       ? CircularProgressIndicator()
                       : ElevatedButton.icon(
-                        onPressed: () {
-                          
-                        },
+                        onPressed: _submitForm,
                         icon: const Icon(Icons.double_arrow_sharp),
                         label: Text(
                           S.of(context).login,

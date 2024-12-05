@@ -30,6 +30,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailTip":
             MessageLookupByLibrary.simpleMessage("nickname@example.com"),
         "forgotPwd": MessageLookupByLibrary.simpleMessage("Esqueceu a senha?"),
+        "invalidEmail":
+            MessageLookupByLibrary.simpleMessage("Digite um email válido."),
+        "invalidForm": MessageLookupByLibrary.simpleMessage(
+            "O formulário é inválido! Por favor, verifique os campos."),
+        "invalidFormat":
+            MessageLookupByLibrary.simpleMessage("Formato inválido."),
+        "invalidNumber":
+            MessageLookupByLibrary.simpleMessage("Digite um número válido."),
+        "invalidPassword":
+            MessageLookupByLibrary.simpleMessage("Senha inválida."),
         "listenMusic": MessageLookupByLibrary.simpleMessage("Ouvir músicas"),
         "login": MessageLookupByLibrary.simpleMessage("Acessar"),
         "loginWith": m0,
@@ -37,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Senha"),
         "passwordTip": MessageLookupByLibrary.simpleMessage(
             "8+ caracteres, 1 maiúscula, 1 minúscula, 1 número, 1 símbolo (@, #, \$)."),
+        "requiredField":
+            MessageLookupByLibrary.simpleMessage("Este campo é obrigatório."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("Idioma"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrar-se"),
         "signUpWith": m1

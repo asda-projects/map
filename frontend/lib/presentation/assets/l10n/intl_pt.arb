@@ -11,5 +11,11 @@
   "password": "Senha",
   "passwordTip": "8+ caracteres, 1 maiúscula, 1 minúscula, 1 número, 1 símbolo (@, #, $).",
   "forgotPwd": "Esqueceu a senha?",
-  "noAccount": "Não tenho conta!"
+  "noAccount": "Não tenho conta!",
+  "requiredField": "Este campo é obrigatório.",
+  "invalidEmail": "Digite um email válido.",
+  "invalidPassword": "Senha inválida.",
+  "invalidFormat": "Formato inválido.",
+  "invalidNumber": "Digite um número válido.",
+  "invalidForm": "O formulário é inválido! Por favor, verifique os campos."
 }

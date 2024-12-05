@@ -69,10 +69,7 @@ class _GlowingButtonState extends State<GlowingButton>
           onPressed: widget.onPressed,
           icon: widget.icon,
           
-          label: 
-            widget.text,
-            
-          
+          label: widget.text  
         ),
       ],
     );
@@ -89,10 +86,10 @@ class _GlowingShadowPainter extends CustomPainter {
       Paint paint = Paint()
     ..shader = SweepGradient(
       colors: [
-        Color(0xFFD6A49B).withOpacity(0.8), // Soft pink
-        Color(0xFFBFD7ED).withOpacity(0.8), // Warm light blue
-        Color(0xFFB3A0C9).withOpacity(0.8), // Muted lavender
-        Color(0xFFD6A49B).withOpacity(0.8), // Return to soft pink
+        Color(0xFFD6A49B).withOpacity(1), // Soft pink
+        Color(0xFFBFD7ED).withOpacity(1), // Warm light blue
+        Color(0xFFB3A0C9).withOpacity(1), // Muted lavender
+        Color(0xFFD6A49B).withOpacity(1), // Return to soft pink
       ],
       stops: [0.0, 0.33, 0.66, 1.0], // Evenly distribute colors
       transform: GradientRotation(2 * pi * animationValue),
