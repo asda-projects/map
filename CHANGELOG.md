@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Improved the messages on auth form ([fae48be](fae48be911b405e87d250e651e4831f1d671a40d))
+-   **frontend**:  Add switching login to sign up messages and organization on screen for processes work in both ([e911ee5](e911ee5cb3727e2de572372e8040bd82e980024b))
+-   **frontend**:  Improved the messages on auth form ([f19cd63](f19cd63dc4a174d1b35bad47e7cc43a8d734c2a0))
 -   **frontend**:  Created a animanted glowing button for board screen ([69b64e8](69b64e818d2844970fa12fa2a179af4f38221718))
 -   **frontend**:  Added translation on auth screen ([a537528](a53752858d3786289ebfef5f811333520d4a2d43))
 -   **frontend**:  Add login/signup form text on auth screen ([69380ec](69380ec32d292b4e4aead10e01b8da038845925c))

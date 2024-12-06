@@ -170,6 +170,16 @@ class S {
     );
   }
 
+  /// `I already have account!`
+  String get hasAccount {
+    return Intl.message(
+      'I already have account!',
+      name: 'hasAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `This field is required.`
   String get requiredField {
     return Intl.message(
@@ -225,6 +235,26 @@ class S {
     return Intl.message(
       'Form is invalid! Please check the fields.',
       name: 'invalidForm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It's great to see you back again!`
+  String get authGreetingsLogin {
+    return Intl.message(
+      'It\'s great to see you back again!',
+      name: 'authGreetingsLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join us now and listen your heart beats!`
+  String get authGreetingsSignUp {
+    return Intl.message(
+      'Join us now and listen your heart beats!',
+      name: 'authGreetingsSignUp',
       desc: '',
       args: [],
     );

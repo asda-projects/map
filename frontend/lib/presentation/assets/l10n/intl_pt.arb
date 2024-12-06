@@ -12,10 +12,13 @@
   "passwordTip": "8+ caracteres, 1 maiúscula, 1 minúscula, 1 número, 1 símbolo (@, #, $).",
   "forgotPwd": "Esqueceu a senha?",
   "noAccount": "Não tenho conta!",
+  "hasAccount": "Eu já tenho uma conta!",
   "requiredField": "Este campo é obrigatório.",
   "invalidEmail": "Digite um email válido.",
   "invalidPassword": "Senha inválida.",
   "invalidFormat": "Formato inválido.",
   "invalidNumber": "Digite um número válido.",
-  "invalidForm": "O formulário é inválido! Por favor, verifique os campos."
+  "invalidForm": "O formulário é inválido! Por favor, verifique os campos.",
+  "authGreetingsLogin": "É ótimo ver você de volta novamente!",
+  "authGreetingsSignUp": "Junte-se a nós agora e ouça seu coração bater!"
 }

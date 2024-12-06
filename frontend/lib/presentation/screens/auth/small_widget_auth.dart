@@ -1,9 +1,11 @@
 
 
 import 'package:animated_background/animated_background.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/domain/services/firebase_auth.dart';
 import 'package:frontend/domain/utils/paths.dart';
 import 'package:frontend/domain/utils/text_fields_validators.dart';
 
@@ -30,13 +32,45 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
   final TextEditingController _passwordController = TextEditingController();
   final bool _isLoading = false;
 
-  void _submitForm() {
+  bool isSignUp = false;
+
+  // Function to toggle the variable
+  void _toggleState() {
+    setState(() {
+      isSignUp = !isSignUp;
+    });
+  }
+
+
+
+
+  Future<void> _submitForm(String email, String password) async {
     if (_formKey.currentState?.validate() ?? false) {
-      // Form is valid
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Form is valid!')),
-      );
-      // Process the form data (e.g., send it to a server or save locally)
+     
+     UserCredential? userCredential = await FirebaseAuthService().signIn(
+          email: email,
+          password: password,
+        );
+
+
+      if (userCredential != null) {
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(content: Text("User authenticated sucessfully: ${userCredential.user}")),
+      );}
+
+      } else {
+       
+       if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(content: Text("User not authenticated:  $userCredential")),
+      );}
+
+
+      }
+
+      
     } else {
       // Form is invalid
       ScaffoldMessenger.of(context).showSnackBar(
@@ -117,7 +151,16 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
         ],
       ),
     ),
-    
+    Spacer(),
+    Text(
+                isSignUp ? S.of(context).authGreetingsSignUp : S.of(context).authGreetingsLogin,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontFamily: "Segoe UI",
+                  fontWeight: FontWeight.w100,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
     Spacer(),
     Form(
         key: _formKey,
@@ -162,12 +205,9 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                       ),
                       //SizedBox(width: 10), // Spacing between the texts
                       GestureDetector(
-                        onTap: () {
-                          // Action for second text
-                          
-                        },
+                        onTap: _toggleState,
                         child: Text(
-                          S.of(context).noAccount,
+                          isSignUp ? S.of(context).hasAccount : S.of(context).noAccount ,
                           style: TextStyle(
                             color: Colors.blue,
                           ),
@@ -179,10 +219,12 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                   _isLoading
                       ? CircularProgressIndicator()
                       : ElevatedButton.icon(
-                        onPressed: _submitForm,
+                        onPressed: () {
+                          _submitForm(_emailController.text.trim(), _passwordController.text.trim());
+                        },
                         icon: const Icon(Icons.double_arrow_sharp),
                         label: Text(
-                          S.of(context).login,
+                          isSignUp ? S.of(context).signUp : S.of(context).login,
                           style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
                         ),
                         style: ElevatedButton.styleFrom(
@@ -221,7 +263,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
               FontAwesomeIcons.google
             ), // Your icon
             label: Text(
-               S.of(context).loginWith("Google"),
+               isSignUp ? S.of(context).signUpWith("Google") : S.of(context).loginWith("Google"),
                // style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
             ),
             style: ElevatedButton.styleFrom(
@@ -247,7 +289,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
               FontAwesomeIcons.facebook
             ), // Your icon
             label: Text(
-               S.of(context).loginWith("Facebook"),
+               isSignUp ? S.of(context).signUpWith("Facebook") : S.of(context).loginWith("Facebook"),
                // style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
             ),
             style: ElevatedButton.styleFrom(
