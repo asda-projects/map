@@ -1,9 +1,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:frontend/presentation/boilerplate/navigation_bar.dart';
 
 // import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
-import 'package:frontend/presentation/boilerplate/app_bar.dart';
+
 
 
 
@@ -52,7 +53,7 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch> {
              extendBodyBehindAppBar: true, // Allows content to extend behind the AppBar
             backgroundColor: Colors.transparent,
        
-
+        bottomNavigationBar: MyNavigationBar(),
         body: SingleChildScrollView(
           child: Column( 
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

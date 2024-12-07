@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Created a login session local by firebase and a new screen for search music ([30481be](30481be210e937d2a7d2019ad25f70b6f69bcca2))
+-   **frontend**:  Fixed the loading not showing and added a navigation bar on search screen ([d7b3d4e](d7b3d4e1d3f24c787852df707d784ab739760a1c))
+-   **frontend**:  Added the search bar and button music search ([3b6fefa](3b6fefab4cf3e0cd74345a0ea4ef8d68e50dcf34))
+-   **frontend**:  Created a login session local by firebase and a new screen for search music ([68904e9](68904e993e0b49d83afb142d911c44d2145110cf))
 -   **frontend**:  Add switching login to sign up messages and organization on screen for processes work in both ([ee07a87](ee07a87ab680cdbcfe028afb0cd6a8ac6d20bd3a))
 -   **frontend**:  Improved the messages on auth form ([f19cd63](f19cd63dc4a174d1b35bad47e7cc43a8d734c2a0))
 -   **frontend**:  Created a animanted glowing button for board screen ([69b64e8](69b64e818d2844970fa12fa2a179af4f38221718))

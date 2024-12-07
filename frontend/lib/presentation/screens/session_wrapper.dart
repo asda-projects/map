@@ -11,21 +11,25 @@ class AuthWrapper extends StatelessWidget {
   
 
   @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        // Check if the user is logged in
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(
-            color: Colors.black,
-          ));
-        } else if (snapshot.hasData) {
-          return OnSearchScreen(onLocaleChange: onLocaleChange); // Redirect to Dashboard if logged in
-        } else {
-          return OnBoardScreen(onLocaleChange: onLocaleChange); // Redirect to Onboarding if not logged in
-        }
-      },
-    );
-  }
+Widget build(BuildContext context) {
+  return StreamBuilder<User?>(
+    stream: FirebaseAuth.instance.authStateChanges(),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return Scaffold(
+          backgroundColor: Colors.white, // Prevent white screen
+          body: Center(
+            child: CircularProgressIndicator(
+              color: Colors.black,
+            ),
+          ),
+        );
+      } else if (snapshot.hasData) {
+        return OnSearchScreen(onLocaleChange: onLocaleChange);
+      } else {
+        return OnBoardScreen(onLocaleChange: onLocaleChange);
+      }
+    },
+  );
+}
 }
