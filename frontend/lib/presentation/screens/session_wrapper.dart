@@ -17,7 +17,9 @@ class AuthWrapper extends StatelessWidget {
       builder: (context, snapshot) {
         // Check if the user is logged in
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(
+            color: Colors.black,
+          ));
         } else if (snapshot.hasData) {
           return OnSearchScreen(onLocaleChange: onLocaleChange); // Redirect to Dashboard if logged in
         } else {

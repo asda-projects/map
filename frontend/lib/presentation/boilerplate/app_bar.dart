@@ -7,10 +7,13 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   
   final Function(Locale) onLocaleChange;
   final Color? logoColor;
+  final Color? backgroundColor;
 
   const MyAppBar({
-    super.key, required this.onLocaleChange,
-    this.logoColor
+    super.key, 
+    required this.onLocaleChange,
+    this.logoColor,
+    this.backgroundColor
     });
 
   @override
@@ -28,17 +31,18 @@ class MyAppBarState extends State<MyAppBar>  {
   @override
   Widget build(BuildContext context) {
 
-    final color = widget.logoColor ?? Theme.of(context).colorScheme.onSurface;
-    
+    final iconColor = widget.logoColor ?? Theme.of(context).colorScheme.onSurface;
+    final bkgColor = widget.backgroundColor ?? Colors.transparent;
+
     return AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: bkgColor,
           leading: Align(
             alignment: Alignment.center, // Ensures the logo is aligned to the left
             child: SvgPicture.asset(
             '${DirPath.media}logo.svg', // Path to your logo
             height: 40,
             colorFilter: ColorFilter.mode(
-            color, // Apply the color here
+            iconColor, // Apply the color here
             BlendMode.srcIn, // Commonly used blend mode for icons
           ),
           ),
@@ -47,7 +51,8 @@ class MyAppBarState extends State<MyAppBar>  {
         ),
 
         actions: [
-          DropdownButton<Locale>(
+          Padding( padding: EdgeInsets.only(right: 10),
+          child: DropdownButton<Locale>(
             value: _selectedLocale,
             onChanged: (Locale? locale) {
               if (locale != null) {
@@ -67,7 +72,7 @@ class MyAppBarState extends State<MyAppBar>  {
             ],
             dropdownColor: Theme.of(context).colorScheme.onSecondary,
             focusColor: Colors.transparent, // Removes the grey focus overlay
-            )
+            ))
             ]);
             
   }
