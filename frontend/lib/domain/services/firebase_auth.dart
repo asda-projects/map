@@ -1,6 +1,7 @@
 
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:frontend/data/remote/contracts.dart';
@@ -13,6 +14,24 @@ class FirebaseAuthService implements AuthContract {
   final FacebookAuth _facebookAuth = FacebookAuth.instance;
 
   final AppLogger logger = AppLogger();
+  
+  FirebaseAuthService() {
+    _setPersistence(); // Configure persistence on initialization
+  }
+
+  // Set persistence for web
+  Future<void> _setPersistence() async {
+    try {
+      // Apply persistence only for web
+      if (kIsWeb) {
+        await _firebaseAuth.setPersistence(Persistence.LOCAL);
+        logger.debug("Persistence set to LOCAL");
+      }
+    } catch (e) {
+      logger.debug("Error setting persistence: ${e.toString()}");
+    }
+  }
+
 
   Future<UserCredential?> signIn({
     required String email,
@@ -33,13 +52,16 @@ class FirebaseAuthService implements AuthContract {
 
   }
   
-  Future<String?> signUp(String email, String password) async {
+  Future<UserCredential?> signUp({
+    required String email,
+    required String password,
+  }) async {
     try {
       final UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return userCredential.user?.uid; // Return the new user's UID
+      return userCredential; // Return the new user's UID
     } catch (e) {
        logger .debug(e.toString());
        return null;
@@ -61,7 +83,7 @@ class FirebaseAuthService implements AuthContract {
       );
 
       await _firebaseAuth.signInWithCredential(credential);
-      return _firebaseAuth.currentUser?.uid; // Return user ID
+      return _firebaseAuth.currentUser.toString(); // Return user ID
     } catch (e) {
        logger .debug(e.toString());
        return null;
@@ -77,7 +99,7 @@ class FirebaseAuthService implements AuthContract {
         if (accessToken != null) {
           final AuthCredential credential = FacebookAuthProvider.credential(accessToken.tokenString);
           await _firebaseAuth.signInWithCredential(credential);
-          return _firebaseAuth.currentUser?.uid; // Return user ID
+          return _firebaseAuth.currentUser.toString(); // Return user ID
         }
       }
       return null; // Login failed
@@ -89,7 +111,24 @@ class FirebaseAuthService implements AuthContract {
 
   @override
   Future<void> logout() async {
+    try {
+    // Sign out from Firebase
     await _firebaseAuth.signOut();
 
+    // Sign out from Google
+    if (await _googleSignIn.isSignedIn()) {
+      await _googleSignIn.signOut();
+    }
+
+    // Sign out from Facebook
+    await _facebookAuth.logOut();
+
+    
+  } catch (e) {
+    logger.debug(e.toString());
   }
+}
+    
+
+  
 }

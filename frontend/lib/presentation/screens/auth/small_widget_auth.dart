@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/domain/services/firebase_auth.dart';
+import 'package:frontend/domain/services/logs.dart';
 import 'package:frontend/domain/utils/paths.dart';
 import 'package:frontend/domain/utils/text_fields_validators.dart';
 
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 import 'package:frontend/presentation/boilerplate/app_bar.dart';
 import 'package:frontend/presentation/boilerplate/form_fields.dart';
+import 'package:frontend/presentation/utils/navigation.dart';
 
 
 class SmallWidgetAuth extends StatefulWidget {
@@ -27,45 +29,107 @@ class SmallWidgetAuth extends StatefulWidget {
 
 class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderStateMixin {
 
+  FirebaseAuthService firebaseAuth = FirebaseAuthService();
+
+  AppLogger logger = AppLogger();
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final bool _isLoading = false;
-
+  
+  // swtichable vars
+  bool _isLoading = false;
   bool isSignUp = false;
 
-  // Function to toggle the variable
+  
   void _toggleState() {
     setState(() {
       isSignUp = !isSignUp;
     });
   }
 
+  Future<void> _loginWith(String provider, String email, String password) async {
 
+    
+
+    if (provider.toLowerCase() == "google") {
+
+      
+       firebaseAuth.loginWithGoogle();
+
+
+    }
+    else if (provider.toLowerCase() == "facebook") {
+      firebaseAuth.loginWithFacebook();
+    } 
+    
+
+  }
 
 
   Future<void> _submitForm(String email, String password) async {
+    
     if (_formKey.currentState?.validate() ?? false) {
+
+      setState(() {
+        _isLoading = true; // Show loading
+      });
+
+      UserCredential? userCredential;
      
-     UserCredential? userCredential = await FirebaseAuthService().signIn(
+     if (isSignUp == false) {
+      
+      userCredential = await firebaseAuth.signIn(
           email: email,
           password: password,
         );
+     } else {
+      
+      userCredential = await firebaseAuth.signUp(
+          email: email,
+          password: password,
+        );
+     }
 
 
       if (userCredential != null) {
 
+        await Future.delayed(Duration(seconds: 2));
+
+              setState(() {
+        _isLoading = false; // Show loading
+      });
+
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text("User authenticated sucessfully: ${userCredential.user}")),
-      );}
+          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User authenticated sucessfully!")));
+          AppNavigation.navigateToPage(
+                context,
+                'OnSearchScreen',
+                arguments: {
+                  'onLocaleChange': widget.onLocaleChange
+                },
+              );
+      }
+
+      logger.debug(userCredential.toString());
+
+
 
       } else {
+      
+      await Future.delayed(Duration(seconds: 2));
+
+              setState(() {
+        _isLoading = false; // Show loading
+      });
        
        if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text("User not authenticated:  $userCredential")),
+         SnackBar(content: Text("User not authenticated!")),
+         
       );}
+
+
 
 
       }
@@ -217,7 +281,10 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                   ),
                   SizedBox(height: 20),
                   _isLoading
-                      ? CircularProgressIndicator()
+                      ? LinearProgressIndicator(
+                        backgroundColor: Colors.grey[300],
+                        valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.onSurface),
+                      )
                       : ElevatedButton.icon(
                         onPressed: () {
                           _submitForm(_emailController.text.trim(), _passwordController.text.trim());
@@ -257,7 +324,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
           Spacer(),
          ElevatedButton.icon(
             onPressed: () {
-              
+              _loginWith("Google", _emailController.text.trim(), _passwordController.text.trim());
             },
             icon: FaIcon(
               FontAwesomeIcons.google
@@ -283,7 +350,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
          Spacer(),
          ElevatedButton.icon(
             onPressed: () {
-              
+              _loginWith("Google", _emailController.text.trim(), _passwordController.text.trim());
             },
             icon: FaIcon(
               FontAwesomeIcons.facebook

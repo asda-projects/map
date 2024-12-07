@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Add switching login to sign up messages and organization on screen for processes work in both ([e911ee5](e911ee5cb3727e2de572372e8040bd82e980024b))
+-   **frontend**:  Created a login session local by firebase and a new screen for search music ([30481be](30481be210e937d2a7d2019ad25f70b6f69bcca2))
+-   **frontend**:  Add switching login to sign up messages and organization on screen for processes work in both ([ee07a87](ee07a87ab680cdbcfe028afb0cd6a8ac6d20bd3a))
 -   **frontend**:  Improved the messages on auth form ([f19cd63](f19cd63dc4a174d1b35bad47e7cc43a8d734c2a0))
 -   **frontend**:  Created a animanted glowing button for board screen ([69b64e8](69b64e818d2844970fa12fa2a179af4f38221718))
 -   **frontend**:  Added translation on auth screen ([a537528](a53752858d3786289ebfef5f811333520d4a2d43))

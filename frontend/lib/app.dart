@@ -1,9 +1,10 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:frontend/presentation/screens/session_wrapper.dart';
 import 'package:frontend/presentation/utils/theme.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
-import 'package:frontend/presentation/screens/board/on_board.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 
@@ -40,7 +41,7 @@ class _AppState extends State<App> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-        home: OnBoardScreen(onLocaleChange: _changeLanguage)
+        home: AuthWrapper(onLocaleChange: _changeLanguage)
       
     );
   }
