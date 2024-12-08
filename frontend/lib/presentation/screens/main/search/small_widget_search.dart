@@ -45,7 +45,7 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch> {
                 children: [
                   Spacer(),
                  Expanded(
-                  flex: 7,
+                  flex: 6,
                   child: TextField(
                 decoration: InputDecoration(
                   hintText: S.of(context).searchBarPhrase,
@@ -64,7 +64,7 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch> {
             ),
             Spacer(),
             Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: 
             ElevatedButton.icon(
                         onPressed: () {
@@ -92,15 +92,13 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch> {
                         ),
                       )),
            Spacer(),
-           Expanded(
-                  flex: 1,
-                  child: 
+            
             IconButton(
               icon: const Icon(Icons.menu), 
               onPressed: () {
               Scaffold.of(context).openEndDrawer(); // Open right drawer
             },
-            )),
+            ),
            Spacer(),
               ])
           

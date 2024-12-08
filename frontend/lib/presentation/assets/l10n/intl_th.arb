@@ -25,5 +25,6 @@
   "search": "ค้นหา",
   "menu": "เมนู",
   "downloadedMusic": "ที่ดาวน์โหลด",
-  "favoriteMusic": "รายการโปรด"
+  "favoriteMusic": "รายการโปรด",
+  "logout": "ออกจากระบบ"
 }

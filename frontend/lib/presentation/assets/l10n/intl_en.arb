@@ -25,6 +25,7 @@
   "search": "Search",
   "menu": "Menu",
   "downloadedMusic": "Downloaded",
-  "favoriteMusic": "Favorite"
+  "favoriteMusic": "Favorite",
+  "logout": "Logout"
 
 }

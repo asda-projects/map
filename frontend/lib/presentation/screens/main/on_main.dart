@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:frontend/presentation/boilerplate/drawer_menu.dart';
 
 import 'package:frontend/presentation/boilerplate/navigation_bar.dart';
 import 'package:frontend/presentation/screens/main/downloaded/on_download.dart';
@@ -77,44 +78,7 @@ class OnMainScreenState extends State<OnMainScreen> {
              extendBodyBehindAppBar: true, // Allows content to extend behind the AppBar
             backgroundColor: Colors.transparent,
             
-            endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text("Settings"),
-              onTap: () {
-                Navigator.pop(context); // Close drawer
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text("About"),
-              onTap: () {
-                Navigator.pop(context); // Close drawer
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text("Logout"),
-              onTap: () {
-                Navigator.pop(context); // Close drawer
-              },
-            ),
-          ],
-        ),
-      ),       
+            endDrawer: MyDrawer(onLocaleChange: widget.onLocaleChange),
         bottomNavigationBar: MyNavigationBar(
           onItemTapped: _onItemTapped,
           selectedIndex: _selectedIndex,
