@@ -1,0 +1,4 @@
+flask
+youtube-search
+ftfy
+duckduckgo-images-api
