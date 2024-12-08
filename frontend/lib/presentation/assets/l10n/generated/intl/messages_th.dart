@@ -64,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ค้นหาเพลงที่นี่..."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("ภาษา"),
         "signUp": MessageLookupByLibrary.simpleMessage("สมัครสมาชิก"),
-        "signUpWith": m1
+        "signUpWith": m1,
+        "unknowErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "เกิดข้อผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง")
       };
 }

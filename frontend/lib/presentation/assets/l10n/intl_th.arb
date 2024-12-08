@@ -26,5 +26,6 @@
   "menu": "เมนู",
   "downloadedMusic": "ที่ดาวน์โหลด",
   "favoriteMusic": "รายการโปรด",
-  "logout": "ออกจากระบบ"
+  "logout": "ออกจากระบบ",
+  "unknowErrorMessage": "เกิดข้อผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"
 }

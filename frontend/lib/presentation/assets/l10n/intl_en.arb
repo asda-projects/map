@@ -26,6 +26,7 @@
   "menu": "Menu",
   "downloadedMusic": "Downloaded",
   "favoriteMusic": "Favorite",
-  "logout": "Logout"
+  "logout": "Logout",
+  "unknowErrorMessage": "Something went wrong. Please try again later."
 
 }

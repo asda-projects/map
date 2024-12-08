@@ -1,11 +1,12 @@
 
 
 import 'package:animated_background/animated_background.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:frontend/domain/services/firebase_auth.dart';
+import 'package:frontend/data/remote/firebase_auth_adpter.dart';
+import 'package:frontend/domain/services/auth_service.dart';
 import 'package:frontend/domain/services/logs.dart';
 import 'package:frontend/domain/utils/paths.dart';
 import 'package:frontend/domain/utils/text_fields_validators.dart';
@@ -29,14 +30,13 @@ class SmallWidgetAuth extends StatefulWidget {
 
 class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderStateMixin {
 
-  FirebaseAuthService firebaseAuth = FirebaseAuthService();
+  FirebaseAuthAdapter firebaseAuth = FirebaseAuthAdapter();
 
   AppLogger logger = AppLogger();
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  
   // swtichable vars
   bool _isLoading = false;
   bool isSignUp = false;
@@ -47,107 +47,29 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
       isSignUp = !isSignUp;
     });
   }
+  
 
-  Future<void> _loginWith(String provider, String email, String password) async {
+  late AuthService authService;
 
-    
-
-    if (provider.toLowerCase() == "google") {
-
-      
-       firebaseAuth.loginWithGoogle();
-
-
-    }
-    else if (provider.toLowerCase() == "facebook") {
-      firebaseAuth.loginWithFacebook();
-    } 
-    
-
-  }
-
-
-  Future<void> _submitForm(String email, String password) async {
-    
-    if (_formKey.currentState?.validate() ?? false) {
-
-      setState(() {
-        _isLoading = true; // Show loading
-      });
-
-      UserCredential? userCredential;
-     
-     if (isSignUp == false) {
-      
-      userCredential = await firebaseAuth.signIn(
-          email: email,
-          password: password,
-        );
-     } else {
-      
-      userCredential = await firebaseAuth.signUp(
-          email: email,
-          password: password,
-        );
-     }
-
-
-      if (userCredential != null) {
-
-        await Future.delayed(Duration(seconds: 2));
-
-              setState(() {
-        _isLoading = false; // Show loading
-      });
-
-        if (mounted) {
-          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User authenticated sucessfully!")));
-          AppNavigation.navigateToPage(
-                context,
-                'OnMainScreen',
-                arguments: {
-                  'onLocaleChange': widget.onLocaleChange
-                },
-              );
-      }
-
-      logger.debug(userCredential.toString());
-
-
-
-      } else {
-      
-      await Future.delayed(Duration(seconds: 2));
-
-              setState(() {
-        _isLoading = false; // Show loading
-      });
-       
-       if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text("User not authenticated!")),
-         
-      );}
-
-
-
-
-      }
-
-      
-    } else {
-      // Form is invalid
-      ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text(S.of(context).invalidForm)),
-      );
-    }
+  @override
+  void initState() {
+    super.initState();
+    authService = AuthService(
+      formKey: _formKey,
+      onLocaleChange: widget.onLocaleChange,  // Define properly
+      navigateToMainScreen: AppNavigation.navigateToPage,
+      setLoading: (bool isLoading) {
+        setState(() {
+          _isLoading = isLoading;
+        });
+      },
+    );
   }
 
 
   @override
   Widget build(BuildContext context) {
 
-    
     
     return Stack(
         children: [ 
@@ -230,10 +152,10 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
         key: _formKey,
           child: Center(
             child: FractionallySizedBox(
-              widthFactor: 0.75, // Form width proportional to the screen
+              widthFactor: 0.75, 
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Space items evenly
-                crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch elements to fill width
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+                crossAxisAlignment: CrossAxisAlignment.stretch, 
                 children: [
                   CustomTextFormField(
                     controller: _emailController,  
@@ -287,7 +209,13 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
                       )
                       : ElevatedButton.icon(
                         onPressed: () {
-                          _submitForm(_emailController.text.trim(), _passwordController.text.trim());
+                          authService.submitForm(
+                            context: context, 
+                            email: _emailController.text.trim(), 
+                            password: _passwordController.text.trim(), 
+                            isSignUp: isSignUp
+                            );
+                          
                         },
                         icon: const Icon(Icons.double_arrow_sharp),
                         label: Text(
@@ -324,7 +252,8 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
           Spacer(),
          ElevatedButton.icon(
             onPressed: () {
-              _loginWith("Google", _emailController.text.trim(), _passwordController.text.trim());
+              authService.loginWithProvider("Google");
+              
             },
             icon: FaIcon(
               FontAwesomeIcons.google
@@ -350,7 +279,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
          Spacer(),
          ElevatedButton.icon(
             onPressed: () {
-              _loginWith("Google", _emailController.text.trim(), _passwordController.text.trim());
+              authService.loginWithProvider("Facebook");
             },
             icon: FaIcon(
               FontAwesomeIcons.facebook

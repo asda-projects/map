@@ -65,6 +65,7 @@ class SmallWidgetBoardState extends State<SmallWidgetBoard> {
           SizedBox(height: 100),
          GlowingButton(
             onPressed: () {
+               
               AppNavigation.navigateToPage(
                 context,
                 'OnAuthScreen',

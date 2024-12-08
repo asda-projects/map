@@ -319,6 +319,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Something went wrong. Please try again later.`
+  String get unknowErrorMessage {
+    return Intl.message(
+      'Something went wrong. Please try again later.',
+      name: 'unknowErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

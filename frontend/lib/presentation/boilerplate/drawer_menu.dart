@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:frontend/domain/services/firebase_auth.dart';
+import 'package:frontend/data/remote/firebase_auth_adpter.dart';
 import 'package:frontend/domain/utils/paths.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
+import 'package:frontend/presentation/utils/navigation.dart';
 
 class MyDrawer extends StatefulWidget {
   final String headerTitle;
@@ -28,7 +29,7 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
-  FirebaseAuthService firebaseAuth = FirebaseAuthService();
+  FirebaseAuthAdapter firebaseAuth = FirebaseAuthAdapter();
   Locale _selectedLocale = const Locale('en'); // Default language
 
   @override
@@ -85,7 +86,8 @@ class _MyDrawerState extends State<MyDrawer> {
           title: Text(S.of(context).logout),
           onTap: () {
             firebaseAuth.logout();
-            Navigator.pop(context); // Close the drawer
+            // Navigator.pop(context);
+            AppNavigation.refreshApp(context);
           },
         ),
       ),

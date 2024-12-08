@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **backend**:  Re-installed some libs for running the app ([ea13148](ea131489dcd8a237d48fe15bbef2d0b97d1b37eb))
+-   **frontend**:  Fixed organization of interfaces and services on project ([5d00e9d](5d00e9dcecc0e143838b35980870d0b38eaa309a))
+-   **backend**:  Re-installed some libs for running the app ([99bca50](99bca503487398a27e80be78e28a2dc65a27251a))
 -   **frontend**:  Menu full builded to translate the screen texts ([30aaae7](30aaae79f9244e85bff598f4a5f02cc44632c802))
 -   **frontend**:  Menu full builded to translate the screen texts ([2f012c4](2f012c428d9833b349060c60021cc3ea42a609a0))
 -   **frontend**:  First stage of switching list music screen ([383cb9a](383cb9aff1342b1ed0bac9c2dc336e51b4f22338))

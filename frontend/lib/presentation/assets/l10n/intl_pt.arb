@@ -26,7 +26,8 @@
   "menu": "Menu",
   "downloadedMusic": "Baixadas",
   "favoriteMusic": "Favoritas",
-  "logout": "Sair"
+  "logout": "Sair",
+  "unknowErrorMessage": "Ocorreu um erro. Por favor, tente novamente mais tarde."
 
 
 }
