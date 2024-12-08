@@ -104,7 +104,7 @@ class SmallWidgetAuthState extends State<SmallWidgetAuth>  with TickerProviderSt
           // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("User authenticated sucessfully!")));
           AppNavigation.navigateToPage(
                 context,
-                'OnSearchScreen',
+                'OnMainScreen',
                 arguments: {
                   'onLocaleChange': widget.onLocaleChange
                 },

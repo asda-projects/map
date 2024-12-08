@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Fixed the loading not showing and added a navigation bar on search screen ([d7b3d4e](d7b3d4e1d3f24c787852df707d784ab739760a1c))
+-   **frontend**:  First stage of switching list music screen ([caa8363](caa8363127f67aa01cd9ea9e59172ce4b47526a3))
+-   **frontend**:  Fixed the loading not showing and added a navigation bar on search screen ([1bc6ee5](1bc6ee5e39e0addc67212f8a819cd73aeac3620a))
 -   **frontend**:  Added the search bar and button music search ([3b6fefa](3b6fefab4cf3e0cd74345a0ea4ef8d68e50dcf34))
 -   **frontend**:  Created a login session local by firebase and a new screen for search music ([68904e9](68904e993e0b49d83afb142d911c44d2145110cf))
 -   **frontend**:  Add switching login to sign up messages and organization on screen for processes work in both ([ee07a87](ee07a87ab680cdbcfe028afb0cd6a8ac6d20bd3a))

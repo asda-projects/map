@@ -20,6 +20,11 @@
   "invalidNumber": "Enter a valid number.",
   "invalidForm": "Form is invalid! Please check the fields.",
   "authGreetingsLogin": "It's great to see you back again!",
-  "authGreetingsSignUp": "Join us now and listen your heart beats!"
+  "authGreetingsSignUp": "Join us now and listen your heart beats!",
+  "searchBarPhrase": "Search music here...",
+  "search": "Search",
+  "menu": "Menu",
+  "downloadedMusic": "Downloaded",
+  "favoriteMusic": "Favorite"
 
 }

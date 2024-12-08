@@ -259,6 +259,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Search music here...`
+  String get searchBarPhrase {
+    return Intl.message(
+      'Search music here...',
+      name: 'searchBarPhrase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Menu`
+  String get menu {
+    return Intl.message(
+      'Menu',
+      name: 'menu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Downloaded`
+  String get downloadedMusic {
+    return Intl.message(
+      'Downloaded',
+      name: 'downloadedMusic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorite`
+  String get favoriteMusic {
+    return Intl.message(
+      'Favorite',
+      name: 'favoriteMusic',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

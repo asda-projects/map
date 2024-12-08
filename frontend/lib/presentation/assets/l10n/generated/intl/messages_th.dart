@@ -30,9 +30,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ดีใจที่ได้พบคุณอีกครั้ง!"),
         "authGreetingsSignUp": MessageLookupByLibrary.simpleMessage(
             "มาร่วมกับเราและฟังเสียงหัวใจของคุณเต้น!"),
+        "downloadedMusic": MessageLookupByLibrary.simpleMessage("ที่ดาวน์โหลด"),
         "email": MessageLookupByLibrary.simpleMessage("อีเมล"),
         "emailTip":
             MessageLookupByLibrary.simpleMessage("nickname@example.com"),
+        "favoriteMusic": MessageLookupByLibrary.simpleMessage("รายการโปรด"),
         "forgotPwd": MessageLookupByLibrary.simpleMessage("ลืมรหัสผ่าน?"),
         "hasAccount":
             MessageLookupByLibrary.simpleMessage("ฉันมีบัญชีอยู่แล้ว!"),
@@ -49,12 +51,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "listenMusic": MessageLookupByLibrary.simpleMessage("ฟังเพลง"),
         "login": MessageLookupByLibrary.simpleMessage("เข้าสู่ระบบ"),
         "loginWith": m0,
+        "menu": MessageLookupByLibrary.simpleMessage("เมนู"),
         "noAccount": MessageLookupByLibrary.simpleMessage("ฉันไม่มีบัญชี!"),
         "password": MessageLookupByLibrary.simpleMessage("รหัสผ่าน"),
         "passwordTip": MessageLookupByLibrary.simpleMessage(
             "8+ ตัวอักษร, 1 ตัวพิมพ์ใหญ่, 1 ตัวพิมพ์เล็ก, 1 ตัวเลข, 1 สัญลักษณ์ (@, #, \$)"),
         "requiredField":
             MessageLookupByLibrary.simpleMessage("ช่องนี้จำเป็นต้องกรอก."),
+        "search": MessageLookupByLibrary.simpleMessage("ค้นหา"),
+        "searchBarPhrase":
+            MessageLookupByLibrary.simpleMessage("ค้นหาเพลงที่นี่..."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("ภาษา"),
         "signUp": MessageLookupByLibrary.simpleMessage("สมัครสมาชิก"),
         "signUpWith": m1

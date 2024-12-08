@@ -1,8 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:frontend/presentation/screens/search/small_widget_search.dart';
-import 'package:frontend/presentation/screens/search/wide_widget_search.dart';
+import 'package:frontend/presentation/screens/main/search/small_widget_search.dart';
+import 'package:frontend/presentation/screens/main/search/wide_widget_search.dart';
 
 import 'package:frontend/presentation/utils/screen_adjuster.dart';
 

@@ -7,11 +7,11 @@ class GlowingButton extends StatefulWidget {
   final VoidCallback onPressed;
 
   const GlowingButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.text,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   _GlowingButtonState createState() => _GlowingButtonState();

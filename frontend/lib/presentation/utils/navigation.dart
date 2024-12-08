@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/presentation/screens/auth/on_auth.dart';
-import 'package:frontend/presentation/screens/search/on_search.dart';
+import 'package:frontend/presentation/screens/main/on_main.dart';
+
 
 class AppNavigation {
   // Define a method to store page mappings with builders
@@ -9,7 +10,7 @@ class AppNavigation {
       "OnAuthScreen": () => OnAuthScreen(
             onLocaleChange: arguments?['onLocaleChange'], // Pass specific argument
           ),
-        "OnSearchScreen": () => OnSearchScreen(
+        "OnMainScreen": () => OnMainScreen(
             onLocaleChange: arguments?['onLocaleChange'], // Pass specific argument
           ),
     };

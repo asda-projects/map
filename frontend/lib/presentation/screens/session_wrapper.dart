@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/presentation/boilerplate/loading_screen.dart';
 import 'package:frontend/presentation/screens/board/on_board.dart';
-import 'package:frontend/presentation/screens/search/on_search.dart';
+import 'package:frontend/presentation/screens/main/on_main.dart';
+
 
 class AuthWrapper extends StatelessWidget {
 
@@ -16,16 +18,9 @@ Widget build(BuildContext context) {
     stream: FirebaseAuth.instance.authStateChanges(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return Scaffold(
-          backgroundColor: Colors.white, // Prevent white screen
-          body: Center(
-            child: CircularProgressIndicator(
-              color: Colors.black,
-            ),
-          ),
-        );
+        return const LoadingScreen(); // Use loading widget
       } else if (snapshot.hasData) {
-        return OnSearchScreen(onLocaleChange: onLocaleChange);
+        return OnMainScreen(onLocaleChange: onLocaleChange);
       } else {
         return OnBoardScreen(onLocaleChange: onLocaleChange);
       }

@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 
 class MyNavigationBar extends StatefulWidget {
-  const MyNavigationBar({super.key});
+  final void Function(int)? onItemTapped;
+  final int selectedIndex;
+
+  const MyNavigationBar({super.key, required this.onItemTapped, required this.selectedIndex});
 
   @override
   _MyNavigationBarState createState() => _MyNavigationBarState();
 }
 
 class _MyNavigationBarState extends State<MyNavigationBar> {
-  int _selectedIndex = 0; // Track selected tab index
+   // Track selected tab index
 
   // Handle tab changes
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       backgroundColor: Colors.white, // Custom background
-      currentIndex: _selectedIndex, // Active tab
-      onTap: _onItemTapped, // Tab change callback
+      currentIndex: widget.selectedIndex, // Active tab
+      onTap: widget.onItemTapped, // Tab change callback
 
       // Active/Inactive icon colors
       selectedItemColor: Theme.of(context).colorScheme.primary,
@@ -35,21 +36,25 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w400),
 
       // Navigation Items
-      items: const [
+      items:  [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined),
-          activeIcon: Icon(Icons.home),
-          label: "Home",
+          icon: Icon(Icons.manage_search_rounded),
+          activeIcon: Icon(Icons.manage_search_rounded),
+          label: S.of(context).search,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.search_outlined),
-          activeIcon: Icon(Icons.search),
-          label: "Search",
+          icon: Icon(Icons.cloud_download),
+          activeIcon: Icon(Icons.cloud_download),
+          label: S.of(context).downloadedMusic,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          activeIcon: Icon(Icons.person),
-          label: "Profile",
+          icon: FaIcon(
+            FontAwesomeIcons.heart
+          ),
+          activeIcon: FaIcon(
+            FontAwesomeIcons.heart
+          ),
+          label: S.of(context).favoriteMusic,
         ),
       ],
     );

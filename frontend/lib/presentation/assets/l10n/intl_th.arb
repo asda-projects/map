@@ -20,5 +20,10 @@
   "invalidNumber": "กรุณากรอกตัวเลขที่ถูกต้อง.",
   "invalidForm":"แบบฟอร์มไม่ถูกต้อง! กรุณาตรวจสอบข้อมูลในช่องกรอก",
   "authGreetingsLogin": "ดีใจที่ได้พบคุณอีกครั้ง!",
-  "authGreetingsSignUp": "มาร่วมกับเราและฟังเสียงหัวใจของคุณเต้น!"
+  "authGreetingsSignUp": "มาร่วมกับเราและฟังเสียงหัวใจของคุณเต้น!",
+  "searchBarPhrase": "ค้นหาเพลงที่นี่...",
+  "search": "ค้นหา",
+  "menu": "เมนู",
+  "downloadedMusic": "ที่ดาวน์โหลด",
+  "favoriteMusic": "รายการโปรด"
 }

@@ -20,5 +20,11 @@
   "invalidNumber": "Digite um número válido.",
   "invalidForm": "O formulário é inválido! Por favor, verifique os campos.",
   "authGreetingsLogin": "É ótimo ver você de volta novamente!",
-  "authGreetingsSignUp": "Junte-se a nós agora e ouça seu coração bater!"
+  "authGreetingsSignUp": "Junte-se a nós agora e ouça seu coração bater!",
+  "searchBarPhrase": "Procure músicas aqui...",
+  "search": "Procurar",
+  "menu": "Menu",
+  "downloadedMusic": "Baixadas",
+  "favoriteMusic": "Favoritas"
+
 }

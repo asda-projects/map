@@ -30,9 +30,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "É ótimo ver você de volta novamente!"),
         "authGreetingsSignUp": MessageLookupByLibrary.simpleMessage(
             "Junte-se a nós agora e ouça seu coração bater!"),
+        "downloadedMusic": MessageLookupByLibrary.simpleMessage("Baixadas"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailTip":
             MessageLookupByLibrary.simpleMessage("nickname@example.com"),
+        "favoriteMusic": MessageLookupByLibrary.simpleMessage("Favoritas"),
         "forgotPwd": MessageLookupByLibrary.simpleMessage("Esqueceu a senha?"),
         "hasAccount":
             MessageLookupByLibrary.simpleMessage("Eu já tenho uma conta!"),
@@ -49,12 +51,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "listenMusic": MessageLookupByLibrary.simpleMessage("Ouvir músicas"),
         "login": MessageLookupByLibrary.simpleMessage("Acessar"),
         "loginWith": m0,
+        "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Não tenho conta!"),
         "password": MessageLookupByLibrary.simpleMessage("Senha"),
         "passwordTip": MessageLookupByLibrary.simpleMessage(
             "8+ caracteres, 1 maiúscula, 1 minúscula, 1 número, 1 símbolo (@, #, \$)."),
         "requiredField":
             MessageLookupByLibrary.simpleMessage("Este campo é obrigatório."),
+        "search": MessageLookupByLibrary.simpleMessage("Procurar"),
+        "searchBarPhrase":
+            MessageLookupByLibrary.simpleMessage("Procure músicas aqui..."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("Idioma"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrar-se"),
         "signUpWith": m1
