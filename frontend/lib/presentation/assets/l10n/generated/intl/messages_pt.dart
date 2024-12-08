@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "listenMusic": MessageLookupByLibrary.simpleMessage("Ouvir músicas"),
         "login": MessageLookupByLibrary.simpleMessage("Acessar"),
         "loginWith": m0,
+        "logout": MessageLookupByLibrary.simpleMessage("Sair"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Não tenho conta!"),
         "password": MessageLookupByLibrary.simpleMessage("Senha"),

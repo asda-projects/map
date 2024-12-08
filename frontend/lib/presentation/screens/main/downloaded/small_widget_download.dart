@@ -43,11 +43,14 @@ class SmallWidgetDownloadState extends State<SmallWidgetDownload> {
             crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Spacer(),
-                SizedBox(
-                width: 400,
-              child: TextField(
+                 Expanded(
+                  flex: 6,
+                  child: TextField(
                 decoration: InputDecoration(
                   hintText: S.of(context).searchBarPhrase,
+                  hintStyle: TextStyle(
+                    fontSize: 12
+                  ),
                   filled: true,
                   fillColor: Colors.white.withOpacity(0.8),
                   prefixIcon: Icon(Icons.search),
@@ -59,11 +62,19 @@ class SmallWidgetDownloadState extends State<SmallWidgetDownload> {
               ),
             ),
             Spacer(),
+            Expanded(
+                  flex: 3,
+                  child: 
             ElevatedButton.icon(
                         onPressed: () {
                         },
                         label: Text(S.of(context).search,
-                          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                            fontSize: 12,
+                            
+                            ),
+                            
                         ),
                         style: ElevatedButton.styleFrom(
                           shadowColor: Colors.transparent,
@@ -74,13 +85,19 @@ class SmallWidgetDownloadState extends State<SmallWidgetDownload> {
                             borderRadius: BorderRadius.circular(5), // Rounded corners
                           ),
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
+                            horizontal: 10,
                             vertical: 20,
                           ), // Padding inside the button
                         ),
-                      ),
+                      )),
            Spacer(),
-           Spacer(),
+            
+            IconButton(
+              icon: const Icon(Icons.menu), 
+              onPressed: () {
+              Scaffold.of(context).openEndDrawer(); // Open right drawer
+            },
+            ),
            Spacer(),
               ])
           

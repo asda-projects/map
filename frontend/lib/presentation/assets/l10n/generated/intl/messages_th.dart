@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "listenMusic": MessageLookupByLibrary.simpleMessage("ฟังเพลง"),
         "login": MessageLookupByLibrary.simpleMessage("เข้าสู่ระบบ"),
         "loginWith": m0,
+        "logout": MessageLookupByLibrary.simpleMessage("ออกจากระบบ"),
         "menu": MessageLookupByLibrary.simpleMessage("เมนู"),
         "noAccount": MessageLookupByLibrary.simpleMessage("ฉันไม่มีบัญชี!"),
         "password": MessageLookupByLibrary.simpleMessage("รหัสผ่าน"),

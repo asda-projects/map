@@ -109,26 +109,30 @@ class FirebaseAuthService implements AuthContract {
       }
   }
 
-  @override
-  Future<void> logout() async {
-    try {
-    // Sign out from Firebase
-    await _firebaseAuth.signOut();
+@override
+Future<void> logout() async {
+  try {
+    // Check Firebase Auth session
+    if (_firebaseAuth.currentUser != null) {
+      await _firebaseAuth.signOut();
+      
+    } 
 
-    // Sign out from Google
+    // Check Google Sign-In session
     if (await _googleSignIn.isSignedIn()) {
       await _googleSignIn.signOut();
+      
+    } 
+
+    // Check Facebook session
+    final accessToken = await _facebookAuth.accessToken;
+    if (accessToken != null) {
+      await _facebookAuth.logOut();
     }
 
-    // Sign out from Facebook
-    await _facebookAuth.logOut();
-
-    
-  } catch (e) {
-    logger.debug(e.toString());
+  } catch (e, stacktrace) {
+    logger.debug("$e\n$stacktrace");
   }
 }
-    
-
   
 }

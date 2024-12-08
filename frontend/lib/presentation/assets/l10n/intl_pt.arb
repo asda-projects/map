@@ -25,6 +25,8 @@
   "search": "Procurar",
   "menu": "Menu",
   "downloadedMusic": "Baixadas",
-  "favoriteMusic": "Favoritas"
+  "favoriteMusic": "Favoritas",
+  "logout": "Sair"
+
 
 }
