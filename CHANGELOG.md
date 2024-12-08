@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### <!-- 0 -->⛰️  Features
 
 -   **frontend**:  Menu full builded to translate the screen texts ([30aaae7](30aaae79f9244e85bff598f4a5f02cc44632c802))
+-   **frontend**:  Menu full builded to translate the screen texts ([2f012c4](2f012c428d9833b349060c60021cc3ea42a609a0))
 -   **frontend**:  First stage of switching list music screen ([383cb9a](383cb9aff1342b1ed0bac9c2dc336e51b4f22338))
 -   **frontend**:  Fixed the loading not showing and added a navigation bar on search screen ([1bc6ee5](1bc6ee5e39e0addc67212f8a819cd73aeac3620a))
 -   **frontend**:  Added the search bar and button music search ([3b6fefa](3b6fefab4cf3e0cd74345a0ea4ef8d68e50dcf34))
