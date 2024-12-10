@@ -24,81 +24,85 @@ class MusicCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(16),
+      color: Theme.of(context).colorScheme.onSurface.withOpacity(0),
+      shadowColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+      margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
         children: [
           // Video Thumbnail Placeholder
           Container(
-  height: 60,
-  width: 60,
-  decoration: BoxDecoration(
-    color: Colors.transparent,
-    borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
-  ),
-  child: CachedNetworkImage(
-    imageUrl: 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.searchImageCover()}$videoId',
-    placeholder: (context, url) => const LinearProgressIndicator(
-      minHeight: 4,
-    ),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-            fit: BoxFit.cover,
+            height: 60,
+            width: 60,
+            margin: const EdgeInsets.only(left: 10),
+            decoration: const BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+            ),
+            child: CachedNetworkImage(
+              imageUrl:
+                  'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.searchImageCover()}$videoId',
+              placeholder: (context, url) => CircularProgressIndicator(
+                backgroundColor: Theme.of(context).colorScheme.onSurface,
+              ),
+              errorWidget: (context, url, error) =>
+                  const Icon(Icons.error_outline, size: 40),
+              fit: BoxFit.cover,
+            ),
           ),
-),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 2, horizontal:16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Channel: $channel',
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: Colors.grey[600],
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1
-                ),
-                SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Duration: $duration',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: Colors.grey[600],
-                      ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1
+
+          // Text Details
+          const SizedBox(width: 8), // Add some spacing
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(width: 4),
-                    Text(
-                      'Views: $views',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: Colors.grey[600],
-                      ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Channel: $channel',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
-                  ],
-                ),
-              ],
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Views: $views',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Duration: $duration',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

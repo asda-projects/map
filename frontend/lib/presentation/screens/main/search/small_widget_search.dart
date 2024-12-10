@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:frontend/data/local/adapter_api_search_music.dart';
-import 'package:frontend/domain/models/music_card.dart';
+
 import 'package:frontend/domain/services/logs.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
+import 'package:frontend/presentation/boilerplate/form_fields.dart';
+import 'package:frontend/presentation/boilerplate/listview.dart';
 
 
 // import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
@@ -67,23 +69,14 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch> {
                   Spacer(),
                  Expanded(
                   flex: 6,
-                  child: TextField(
-                    controller: _searchController,
-                decoration: InputDecoration(
-                  hintText: S.of(context).searchBarPhrase,
-                  hintStyle: TextStyle(
-                    fontSize: 12
-                  ),
-                  filled: true,
-                  fillColor: Colors.white.withOpacity(0.8),
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide.none,
-                  ),
+                  child: CustomTextFormField(
+                    controller: _searchController, 
+                    labelText: S.of(context).searchBarPhrase, 
+                    fontSize: 12,
+                    
                 ),
               ),
-            ),
+            
             Spacer(),
             Expanded(
                   flex: 3,
@@ -122,65 +115,11 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch> {
             ),
            Spacer(),
               ]),
-
+              SizedBox(height: 20),
               Center(
                 child: 
                 Container(
-          child: _searchResults == null
-              ? SizedBox()
-              : FutureBuilder<List<Map<String, dynamic>>>(
-          future: _searchResults,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Align(
-                alignment: Alignment.center,
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            if (snapshot.hasError) {
-              return Center(
-                child: Text(
-                  S.of(context).searchErrorMessage,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15
-                    ),
-                ),
-              );
-            }
-
-            if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(
-                child: Text(S.of(context).noResultsFound, style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15
-                    )),
-              );
-            }
-
-            final results = snapshot.data!;
-
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: results.length,
-              itemBuilder: (context, index) {
-                final video = results[index];
-
-                return MusicCard(
-                  title: video['title'] ?? S.of(context).noTitle,
-                  channel: video['channel'] ?? S.of(context).unknownChannel,
-                  duration: video['duration'] ?? S.of(context).unknownDuration,
-                  views: video['views'] ?? S.of(context).noViews,
-                  videoId: video['video_id'] ?? '',
-                );
-              },
-            );
-          },
-        ))),
+          child: _searchResults == null ? SizedBox() : MyListViewBuilder(searchResults: _searchResults))),
       ],
     ),
   );

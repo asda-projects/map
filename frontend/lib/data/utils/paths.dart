@@ -32,7 +32,7 @@ class _Routes {
 
 class LocalApiPath {
   // Base URL details
-  static const _url = 'localhost';
+  static const _url = '172.20.10.3';
   static const _port = 5000;
 
   static const baseUrl = '$_url:$_port';
