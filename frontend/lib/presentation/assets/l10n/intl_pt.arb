@@ -27,7 +27,13 @@
   "downloadedMusic": "Baixadas",
   "favoriteMusic": "Favoritas",
   "logout": "Sair",
-  "unknowErrorMessage": "Ocorreu um erro. Por favor, tente novamente mais tarde."
+  "unknowErrorMessage": "Ocorreu um erro. Por favor, tente novamente mais tarde.",
+  "searchErrorMessage": "Ocorreu um erro ao buscar. Tente novamente mais tarde.",
+  "noResultsFound": "Nenhum resultado encontrado. Tente um termo de busca diferente.",
+  "noTitle": "Sem título",
+  "unknownChannel": "Canal desconhecido",
+  "unknownDuration": "Duração desconhecida",
+  "noViews": "Sem visualizações"
 
 
 }

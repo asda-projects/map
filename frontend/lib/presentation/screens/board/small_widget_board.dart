@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:frontend/domain/utils/paths.dart';
+import 'package:frontend/data/utils/paths.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 import 'package:frontend/presentation/boilerplate/app_bar.dart';
 import 'package:frontend/presentation/boilerplate/glowing_button.dart';

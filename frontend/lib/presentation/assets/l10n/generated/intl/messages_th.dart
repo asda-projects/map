@@ -54,6 +54,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("ออกจากระบบ"),
         "menu": MessageLookupByLibrary.simpleMessage("เมนู"),
         "noAccount": MessageLookupByLibrary.simpleMessage("ฉันไม่มีบัญชี!"),
+        "noResultsFound": MessageLookupByLibrary.simpleMessage(
+            "ไม่พบผลลัพธ์ โปรดลองค้นหาด้วยคำอื่น"),
+        "noTitle": MessageLookupByLibrary.simpleMessage("ไม่มีชื่อเรื่อง"),
+        "noViews": MessageLookupByLibrary.simpleMessage("ไม่มีการรับชม"),
         "password": MessageLookupByLibrary.simpleMessage("รหัสผ่าน"),
         "passwordTip": MessageLookupByLibrary.simpleMessage(
             "8+ ตัวอักษร, 1 ตัวพิมพ์ใหญ่, 1 ตัวพิมพ์เล็ก, 1 ตัวเลข, 1 สัญลักษณ์ (@, #, \$)"),
@@ -62,10 +66,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("ค้นหา"),
         "searchBarPhrase":
             MessageLookupByLibrary.simpleMessage("ค้นหาเพลงที่นี่..."),
+        "searchErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "เกิดข้อผิดพลาดขณะค้นหา โปรดลองใหม่อีกครั้งในภายหลัง"),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("ภาษา"),
         "signUp": MessageLookupByLibrary.simpleMessage("สมัครสมาชิก"),
         "signUpWith": m1,
         "unknowErrorMessage": MessageLookupByLibrary.simpleMessage(
-            "เกิดข้อผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง")
+            "เกิดข้อผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"),
+        "unknownChannel":
+            MessageLookupByLibrary.simpleMessage("ช่องไม่ทราบชื่อ"),
+        "unknownDuration":
+            MessageLookupByLibrary.simpleMessage("ระยะเวลาไม่ทราบ")
       };
 }

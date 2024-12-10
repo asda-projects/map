@@ -27,6 +27,12 @@
   "downloadedMusic": "Downloaded",
   "favoriteMusic": "Favorite",
   "logout": "Logout",
-  "unknowErrorMessage": "Something went wrong. Please try again later."
+  "unknowErrorMessage": "Something went wrong. Please try again later.",
+  "searchErrorMessage": "An error occurred while searching. Please try again later.",
+  "noResultsFound": "No results found. Try a different search term.",
+  "noTitle": "No Title",
+  "unknownChannel": "Unknown Channel",
+  "unknownDuration": "Unknown Duration",
+  "noViews": "No Views"
 
 }

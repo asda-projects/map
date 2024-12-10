@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/data/remote/firebase_auth_adpter.dart';
-import 'package:frontend/domain/utils/paths.dart';
+import 'package:frontend/data/utils/paths.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 import 'package:frontend/presentation/utils/navigation.dart';
 

@@ -55,6 +55,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("I do not have account!"),
+        "noResultsFound": MessageLookupByLibrary.simpleMessage(
+            "No results found. Try a different search term."),
+        "noTitle": MessageLookupByLibrary.simpleMessage("No Title"),
+        "noViews": MessageLookupByLibrary.simpleMessage("No Views"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordTip": MessageLookupByLibrary.simpleMessage(
             "8+ chars, 1 uppercase, 1 lowercase, 1 number, 1 symbol (@, #, \$)."),
@@ -63,10 +67,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchBarPhrase":
             MessageLookupByLibrary.simpleMessage("Search music here..."),
+        "searchErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while searching. Please try again later."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("Language"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpWith": m1,
         "unknowErrorMessage": MessageLookupByLibrary.simpleMessage(
-            "Something went wrong. Please try again later.")
+            "Something went wrong. Please try again later."),
+        "unknownChannel":
+            MessageLookupByLibrary.simpleMessage("Unknown Channel"),
+        "unknownDuration":
+            MessageLookupByLibrary.simpleMessage("Unknown Duration")
       };
 }

@@ -54,6 +54,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Sair"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Não tenho conta!"),
+        "noResultsFound": MessageLookupByLibrary.simpleMessage(
+            "Nenhum resultado encontrado. Tente um termo de busca diferente."),
+        "noTitle": MessageLookupByLibrary.simpleMessage("Sem título"),
+        "noViews": MessageLookupByLibrary.simpleMessage("Sem visualizações"),
         "password": MessageLookupByLibrary.simpleMessage("Senha"),
         "passwordTip": MessageLookupByLibrary.simpleMessage(
             "8+ caracteres, 1 maiúscula, 1 minúscula, 1 número, 1 símbolo (@, #, \$)."),
@@ -62,10 +66,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("Procurar"),
         "searchBarPhrase":
             MessageLookupByLibrary.simpleMessage("Procure músicas aqui..."),
+        "searchErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Ocorreu um erro ao buscar. Tente novamente mais tarde."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("Idioma"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrar-se"),
         "signUpWith": m1,
         "unknowErrorMessage": MessageLookupByLibrary.simpleMessage(
-            "Ocorreu um erro. Por favor, tente novamente mais tarde.")
+            "Ocorreu um erro. Por favor, tente novamente mais tarde."),
+        "unknownChannel":
+            MessageLookupByLibrary.simpleMessage("Canal desconhecido"),
+        "unknownDuration":
+            MessageLookupByLibrary.simpleMessage("Duração desconhecida")
       };
 }

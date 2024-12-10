@@ -329,6 +329,66 @@ class S {
       args: [],
     );
   }
+
+  /// `An error occurred while searching. Please try again later.`
+  String get searchErrorMessage {
+    return Intl.message(
+      'An error occurred while searching. Please try again later.',
+      name: 'searchErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No results found. Try a different search term.`
+  String get noResultsFound {
+    return Intl.message(
+      'No results found. Try a different search term.',
+      name: 'noResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Title`
+  String get noTitle {
+    return Intl.message(
+      'No Title',
+      name: 'noTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown Channel`
+  String get unknownChannel {
+    return Intl.message(
+      'Unknown Channel',
+      name: 'unknownChannel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown Duration`
+  String get unknownDuration {
+    return Intl.message(
+      'Unknown Duration',
+      name: 'unknownDuration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Views`
+  String get noViews {
+    return Intl.message(
+      'No Views',
+      name: 'noViews',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

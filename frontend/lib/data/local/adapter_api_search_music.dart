@@ -2,13 +2,23 @@
 
 import 'package:frontend/data/local/interface_api_search_music.dart';
 import 'package:frontend/data/utils/requests.dart';
+import 'package:frontend/data/utils/paths.dart';
 
-class MusicService implements SearchMusicInterface {
-  final Request request = Request(baseUrl: 'localhost:5000', useHttps: false);
+class MusicAdapter implements SearchMusicInterface {
 
+
+
+  final Request request = Request(baseUrl: LocalApiPath.baseUrl, useHttps: false);
+  
   @override
   Future<void> streamAudio(String videoId) async {
-    final response = await request.get('/stream/$videoId', headers: {
+
+
+
+
+    final response = await request.get('${
+      LocalApiPath.routes.streamAudio()
+      }$videoId', headers: {
       'Content-Type': 'audio/mpeg',
     });
 
@@ -19,7 +29,9 @@ class MusicService implements SearchMusicInterface {
 
   @override
   Future<void> reproduceAudio(String videoId) async {
-    final response = await request.get('/reproduce/$videoId', headers: {
+    final response = await request.get('${
+      LocalApiPath.routes.reproduceAudio()
+      }$videoId', headers: {
       'Content-Type': 'audio/mp4',
     });
 
@@ -29,14 +41,26 @@ class MusicService implements SearchMusicInterface {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> searchVideos(String query) async {
-    final response = await request.get('/search', params: {'query': query});
+Future<List<Map<String, dynamic>>> searchVideos(String query) async {
+  final response = await request.get(
+    LocalApiPath.routes.searchVideos(),
+    params: {'query': query},
+  );
 
-    if (response['statusCode'] == 200 && response['body'] is Map<String, dynamic>) {
-      final List<dynamic> results = response['body']['results'] ?? [];
-      return results.map((e) => e as Map<String, dynamic>).toList();
+  if (response['statusCode'] == 200) {
+    final body = response['body'];
+
+    if (body is Map<String, dynamic> && body['results'] is List) {
+      final results = body['results'] as List<dynamic>;
+      return results.map((e) => Map<String, dynamic>.from(e)).toList();
     } else {
-      throw Exception('Failed to search videos');
+      throw Exception('Invalid data format from the server');
     }
+  } else {
+    throw Exception('Failed to search videos: ${response['statusCode']}');
   }
 }
+
+
+}
+

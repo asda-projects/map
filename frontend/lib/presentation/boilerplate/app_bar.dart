@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:frontend/domain/utils/paths.dart';
+import 'package:frontend/data/utils/paths.dart';
 
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   

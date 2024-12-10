@@ -8,7 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:frontend/data/remote/firebase_auth_adpter.dart';
 import 'package:frontend/domain/services/auth_service.dart';
 import 'package:frontend/domain/services/logs.dart';
-import 'package:frontend/domain/utils/paths.dart';
+import 'package:frontend/data/utils/paths.dart';
 import 'package:frontend/domain/utils/text_fields_validators.dart';
 
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
