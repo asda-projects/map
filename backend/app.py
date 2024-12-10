@@ -2,21 +2,17 @@ import os
 import re
 from flask import Flask, Response, jsonify, request, send_file, stream_with_context
 import subprocess
+import requests
 from youtube_search import YoutubeSearch
 from ftfy import fix_text
-
-from duckduckgo_images_api import search
-
+from flask_cors import CORS
 
 
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
-def search_images(query):
-    """Search for safe images using DuckDuckGo."""
-    results = search(query)
-    return [r["url"] for r in results["results"]]
 
 
 @app.route('/stream/<video_id>')
@@ -105,7 +101,16 @@ def search_videos():
         return jsonify({"error": str(e)}), 500
 
 
-
+@app.route('/search_image_music_cover/<video_id>')
+def proxy_image(video_id):
+    # localhost:5000/search_image_music_cover/jNJkG8XMeis
+    url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
+    print(f"Requesting image cover at {url}")
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        return Response(response.content, mimetype='image/jpeg')
+    else:
+        return Response("Error to search image!", status=404)
     
 
 if __name__ == '__main__':
