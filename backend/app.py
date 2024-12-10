@@ -86,8 +86,8 @@ def search_videos():
         videos = []
         for video in search_results:
             videos.append({
-                "title": clean_text(video.get('title')),
-                "channel": clean_text(video.get('channel')),
+                "title": video.get('title'),
+                "channel": video.get('channel'),
                 "duration": clean_text(video.get('duration')),
                 "views": clean_text(video.get('views', '')),
                 "video_id": video.get('id')

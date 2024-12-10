@@ -6,7 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Fixed organization of interfaces and services on project ([5d00e9d](5d00e9dcecc0e143838b35980870d0b38eaa309a))
+-   **backend**:  Removed the cleaning function text from title and channel no to be removed important chars of the name ([233e54d](233e54d8c1543ff434dfb4825fae989a63287802))
+-   **frontend**:  Made the card for showing the music ([a1b19d1](a1b19d10adf47f048a71346ccba4b3915ce0280c))
+-   **backend**:  Made a route as proxy to search image and avoid error on loading images in frontend ([37400b1](37400b19c6414aaca13e8bf0415bc4482d3ac5a8))
+-   **frontend**:  Fixed error to load cover images of the music on search ([577c052](577c052309c0ea1253dbf1b6a83f265aaf2d175b))
+-   **frontend**:  Fixed organization of interfaces and services on project ([50531b2](50531b2cc2ff372edb5b82a86e4a3884ab70074c))
 -   **backend**:  Re-installed some libs for running the app ([99bca50](99bca503487398a27e80be78e28a2dc65a27251a))
 -   **frontend**:  Menu full builded to translate the screen texts ([30aaae7](30aaae79f9244e85bff598f4a5f02cc44632c802))
 -   **frontend**:  Menu full builded to translate the screen texts ([2f012c4](2f012c428d9833b349060c60021cc3ea42a609a0))
