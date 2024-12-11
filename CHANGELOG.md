@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **backend**:  Removed the cleaning function text from title and channel no to be removed important chars of the name ([233e54d](233e54d8c1543ff434dfb4825fae989a63287802))
+-   **frontend**:  Created the initial stage of music player ([8c226d3](8c226d3540eacb7734231b1b5d35059f1dab1ef5))
+-   **frontend**:  Implemented the cache for reload searched musics ([37550d6](37550d6fadd4ce7f5079adc61f6a685b949abcb8))
+-   **backend**:  Removed the cleaning function text from title and channel no to be removed important chars of the name ([612757f](612757f70149567fc5c0da89b4642ab2aa9e0946))
 -   **frontend**:  Made the card for showing the music ([a1b19d1](a1b19d10adf47f048a71346ccba4b3915ce0280c))
 -   **backend**:  Made a route as proxy to search image and avoid error on loading images in frontend ([37400b1](37400b19c6414aaca13e8bf0415bc4482d3ac5a8))
 -   **frontend**:  Fixed error to load cover images of the music on search ([577c052](577c052309c0ea1253dbf1b6a83f265aaf2d175b))

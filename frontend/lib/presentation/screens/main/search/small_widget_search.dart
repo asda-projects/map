@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:frontend/data/local/adapter_api_search_music.dart';
+
 
 import 'package:frontend/domain/services/logs.dart';
 import 'package:frontend/domain/services/music_service.dart';
@@ -33,7 +33,7 @@ class SmallWidgetSearch extends StatefulWidget {
 
 class SmallWidgetSearchState extends State<SmallWidgetSearch>  {
   final TextEditingController _searchController = TextEditingController();
-  final MusicAdapter _musicAdapter = MusicAdapter();
+  
   AppLogger logger = AppLogger();
 
   Future<List<Map<String, dynamic>>>? _searchResults;
@@ -74,7 +74,7 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch>  {
       }
       
       // Search videos
-      final results = await _musicAdapter.searchVideos(query);
+      final results = await musicService!.searchMusic(query);
 
       if (results.isNotEmpty) {
         setState(() {

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:frontend/data/local/adapter_api_search_music.dart';
 import 'package:frontend/data/local/adapter_local_cache.dart';
 
 
@@ -6,6 +7,7 @@ import 'package:frontend/data/local/adapter_local_cache.dart';
 class MusicService {
   static const String _cacheKey = "music_list";
   final LocalCacheAdapter cache;
+  final MusicAdapter _musicAdapter = MusicAdapter();
 
   MusicService._(this.cache);
 
@@ -38,6 +40,14 @@ class MusicService {
     return [];
   }
 
+  Future<List<Map<String, dynamic>>>  searchMusic(String musicName) async {
+
+    final results = await _musicAdapter.searchVideos(musicName);
+
+    return results;
+
   // Search Music
+
+}
 
 }

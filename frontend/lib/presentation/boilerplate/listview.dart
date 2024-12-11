@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/domain/models/music_card.dart';
+import 'package:frontend/domain/music_card.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 
 class MyListViewBuilder extends StatefulWidget {
@@ -15,12 +15,20 @@ class MyListViewBuilder extends StatefulWidget {
 }
 
 class _MyListViewBuilderState extends State<MyListViewBuilder> {
+
+    void loadingDelay() async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Map<String, dynamic>>>(
       future: widget.searchResults,
       builder: (context, snapshot) {
+
         if (snapshot.connectionState == ConnectionState.waiting) {
+          loadingDelay();
           return const Align(
             alignment: Alignment.center,
             child: SizedBox(
@@ -66,10 +74,12 @@ class _MyListViewBuilderState extends State<MyListViewBuilder> {
             final video = results[index];
 
             return MusicCard(
-              title: video['title'] ?? 'No Title', // Replace with localized string
-              channel: video['channel'] ?? 'Unknown Channel',
-              duration: video['duration'] ?? 'Unknown Duration',
-              views: video['views'] ?? 'No Views',
+              listMusic: results,
+              indexMusic: index,
+              title: video['title'] ?? S.of(context).noTitle, // Replace with localized string
+              channel: video['channel'] ??  S.of(context).unknownChannel,
+              duration: video['duration'] ?? S.of(context).unknownDuration,
+              views: video['views'] ?? S.of(context).noViews,
               videoId: video['video_id'] ?? '',
             );
           },

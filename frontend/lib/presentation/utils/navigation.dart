@@ -3,6 +3,7 @@ import 'package:frontend/app.dart';
 import 'package:frontend/presentation/screens/auth/on_auth.dart';
 import 'package:frontend/presentation/screens/main/on_main.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
+import 'package:frontend/presentation/screens/player/on_play.dart';
 
 
 class AppNavigation {
@@ -15,6 +16,10 @@ class AppNavigation {
       "OnMainScreen": () => OnMainScreen(
             onLocaleChange: arguments?['onLocaleChange'],
           ),
+      "OnPlayScreen": () => OnPlayScreen(
+                    listMusic: arguments?['listMusic'],
+            indexMusic: arguments?['indexMusic']
+      )
     };
 
     return pages[pageName]?.call();
