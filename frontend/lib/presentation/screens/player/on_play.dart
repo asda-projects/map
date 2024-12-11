@@ -45,8 +45,7 @@ class OnPlayScreenState extends State<OnPlayScreen>  {
                   end: Alignment.bottomCenter,
                   colors: [
                   Colors.white.withOpacity(1), // Return to soft pink
-                  Colors.grey.shade400,
-                  Colors.grey.shade600,
+                  Colors.grey.shade300,
                   Color(0xFFD6A49B).withOpacity(0.7), // Soft pink
                             ],
                 ),

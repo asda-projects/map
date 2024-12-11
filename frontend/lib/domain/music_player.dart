@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/data/utils/paths.dart';
 import 'package:frontend/domain/services/logs.dart';
@@ -43,7 +44,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
         
         widget.indexMusic++;
       });
-      _loadMusic(widget.listMusic[widget.indexMusic]['videoId']);
+      _loadMusic(widget.listMusic[widget.indexMusic]['video_id']);
     }
   }
 
@@ -52,34 +53,84 @@ class _MusicPlayerState extends State<MusicPlayer> {
       setState(() {
         widget.indexMusic--;
       });
-      _loadMusic(widget.listMusic[widget.indexMusic]['videoId']);
+      _loadMusic(widget.listMusic[widget.indexMusic]['video_id']);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Music Player"),
-      ),
-      body: Column(
+    return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             widget.listMusic[widget.indexMusic]['title'] ?? S.of(context).noTitle,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 24, 
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface
+              
+              ),
           ),
-          Text("Channel: ${widget.listMusic[widget.indexMusic]['channel'] ?? S.of(context).unknownChannel}"),
-          Text("Views: ${widget.listMusic[widget.indexMusic]['views'] ??  S.of(context).noViews}"),
-          Text("Duration: ${widget.listMusic[widget.indexMusic]['duration'] ?? S.of(context).unknownDuration}"),
+          SizedBox(height: 10),
+          Container(
+            height: 200,
+            width: 250,
+            margin: const EdgeInsets.only(left: 10),
+            decoration: const BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+            ),
+            child: CachedNetworkImage(
+              imageUrl:
+                  "http://${LocalApiPath.baseUrl}${LocalApiPath.routes.searchImageCover()}${widget.listMusic[widget.indexMusic]['video_id']}",
+              placeholder: (context, url) => Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                backgroundColor: Theme.of(context).colorScheme.onSurface,
+              ))),
+              errorWidget: (context, url, error) =>
+                  const Icon(Icons.error_outline, size: 40),
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(height: 20),
+          
+          Text(
+            S.of(context).channel("${widget.listMusic[widget.indexMusic]['channel'] ?? S.of(context).unknownChannel}"),
+            style: TextStyle(
+              fontSize: 16, 
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface
+              
+              )),
+          Text(
+            S.of(context).views("${widget.listMusic[widget.indexMusic]['views'] ??  S.of(context).noViews}"),
+            style: TextStyle(
+              fontSize: 16, 
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface
+              
+              )),
+          Text(
+            S.of(context).duration("${widget.listMusic[widget.indexMusic]['duration'] ?? S.of(context).unknownDuration}"),
+            style: TextStyle(
+              fontSize: 16, 
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface
+              
+              )),
+          SizedBox(height: 20),
+          
           PlayerControls(
             audioPlayer: _audioPlayer,
             onNext: _playNext,
             onPrevious: _playPrevious,
+            
           ),
-        ],
-      ),
-    );
+        ]);
   }
 
   @override
@@ -88,6 +139,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
     super.dispose();
   }
 }
+
+void loadingDelay() async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
 
 class PlayerControls extends StatelessWidget {
   final AudioPlayer audioPlayer;
@@ -112,6 +167,19 @@ class PlayerControls extends StatelessWidget {
         StreamBuilder<PlayerState>(
           stream: audioPlayer.playerStateStream,
           builder: (context, snapshot) {
+            
+            if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator()),
+                );
+        }
+        if (snapshot.hasError || !snapshot.hasData) {
+          return Icon(Icons.error_outline, size: 40);
+        }
             final state = snapshot.data;
             final isPlaying = state?.playing ?? false;
             return IconButton(
