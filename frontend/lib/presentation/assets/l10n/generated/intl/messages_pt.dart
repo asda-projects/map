@@ -20,9 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'pt';
 
-  static String m0(provider) => "Acessar com ${provider}";
+  static String m0(name) => "Canal: ${name}";
 
-  static String m1(provider) => "Registrar-se com ${provider}";
+  static String m1(amount) => "Duração: ${amount}";
+
+  static String m2(provider) => "Acessar com ${provider}";
+
+  static String m3(provider) => "Registrar-se com ${provider}";
+
+  static String m4(amount) => "Visualizações: ${amount}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -30,7 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "É ótimo ver você de volta novamente!"),
         "authGreetingsSignUp": MessageLookupByLibrary.simpleMessage(
             "Junte-se a nós agora e ouça seu coração bater!"),
+        "channel": m0,
         "downloadedMusic": MessageLookupByLibrary.simpleMessage("Baixadas"),
+        "duration": m1,
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailTip":
             MessageLookupByLibrary.simpleMessage("nickname@example.com"),
@@ -50,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Senha inválida."),
         "listenMusic": MessageLookupByLibrary.simpleMessage("Ouvir músicas"),
         "login": MessageLookupByLibrary.simpleMessage("Acessar"),
-        "loginWith": m0,
+        "loginWith": m2,
         "logout": MessageLookupByLibrary.simpleMessage("Sair"),
         "menu": MessageLookupByLibrary.simpleMessage("Menu"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Não tenho conta!"),
@@ -70,12 +78,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ocorreu um erro ao buscar. Tente novamente mais tarde."),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("Idioma"),
         "signUp": MessageLookupByLibrary.simpleMessage("Registrar-se"),
-        "signUpWith": m1,
+        "signUpWith": m3,
         "unknowErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Ocorreu um erro. Por favor, tente novamente mais tarde."),
         "unknownChannel":
             MessageLookupByLibrary.simpleMessage("Canal desconhecido"),
         "unknownDuration":
-            MessageLookupByLibrary.simpleMessage("Duração desconhecida")
+            MessageLookupByLibrary.simpleMessage("Duração desconhecida"),
+        "views": m4
       };
 }

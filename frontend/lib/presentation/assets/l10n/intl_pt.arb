@@ -33,7 +33,10 @@
   "noTitle": "Sem título",
   "unknownChannel": "Canal desconhecido",
   "unknownDuration": "Duração desconhecida",
-  "noViews": "Sem visualizações"
+  "noViews": "Sem visualizações",
+  "channel": "Canal: {name}",
+  "views": "Visualizações: {amount}",
+  "duration": "Duração: {amount}"
 
 
 }

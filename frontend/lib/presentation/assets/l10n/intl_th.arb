@@ -33,5 +33,8 @@
   "noTitle": "ไม่มีชื่อเรื่อง",
   "unknownChannel": "ช่องไม่ทราบชื่อ",
   "unknownDuration": "ระยะเวลาไม่ทราบ",
-  "noViews": "ไม่มีการรับชม"
+  "noViews": "ไม่มีการรับชม",
+  "channel": "ช่อง: {name}",
+  "views": "จำนวนการดู: {amount}",
+  "duration": "ระยะเวลา: {amount}"
 }

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/data/utils/paths.dart';
 import 'package:frontend/domain/services/logs.dart';
+import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 
 class MusicCard extends StatelessWidget {
   final String title;
@@ -25,12 +26,19 @@ class MusicCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Theme.of(context).colorScheme.onSurface.withOpacity(0),
-      shadowColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+      shadowColor: Theme.of(context).colorScheme.onSurface.withOpacity(0),
       margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Row(
+      child: InkWell(
+    borderRadius: BorderRadius.circular(5),
+    focusColor: Theme.of(context).colorScheme.onSurface.withOpacity(0.3),
+    onTap: () {
+      
+      
+    },
+    child: Row(
         children: [
           // Video Thumbnail Placeholder
           Container(
@@ -73,7 +81,7 @@ class MusicCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Channel: $channel',
+                    S.of(context).channel(channel),
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.onSurface,
@@ -83,7 +91,7 @@ class MusicCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Views: $views',
+                    S.of(context).views(views),
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.onSurface,
@@ -93,7 +101,7 @@ class MusicCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Duration: $duration',
+                    S.of(context).duration(duration),
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.onSurface,
@@ -106,7 +114,7 @@ class MusicCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 }

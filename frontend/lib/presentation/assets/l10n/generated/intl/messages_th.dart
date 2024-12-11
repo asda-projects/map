@@ -20,9 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'th';
 
-  static String m0(provider) => "เข้าสู่ระบบด้วย ${provider}";
+  static String m0(name) => "ช่อง: ${name}";
 
-  static String m1(provider) => "สมัครสมาชิกด้วย ${provider}";
+  static String m1(amount) => "ระยะเวลา: ${amount}";
+
+  static String m2(provider) => "เข้าสู่ระบบด้วย ${provider}";
+
+  static String m3(provider) => "สมัครสมาชิกด้วย ${provider}";
+
+  static String m4(amount) => "จำนวนการดู: ${amount}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -30,7 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ดีใจที่ได้พบคุณอีกครั้ง!"),
         "authGreetingsSignUp": MessageLookupByLibrary.simpleMessage(
             "มาร่วมกับเราและฟังเสียงหัวใจของคุณเต้น!"),
+        "channel": m0,
         "downloadedMusic": MessageLookupByLibrary.simpleMessage("ที่ดาวน์โหลด"),
+        "duration": m1,
         "email": MessageLookupByLibrary.simpleMessage("อีเมล"),
         "emailTip":
             MessageLookupByLibrary.simpleMessage("nickname@example.com"),
@@ -50,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("รหัสผ่านไม่ถูกต้อง."),
         "listenMusic": MessageLookupByLibrary.simpleMessage("ฟังเพลง"),
         "login": MessageLookupByLibrary.simpleMessage("เข้าสู่ระบบ"),
-        "loginWith": m0,
+        "loginWith": m2,
         "logout": MessageLookupByLibrary.simpleMessage("ออกจากระบบ"),
         "menu": MessageLookupByLibrary.simpleMessage("เมนู"),
         "noAccount": MessageLookupByLibrary.simpleMessage("ฉันไม่มีบัญชี!"),
@@ -70,12 +78,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "เกิดข้อผิดพลาดขณะค้นหา โปรดลองใหม่อีกครั้งในภายหลัง"),
         "selectedLanguage": MessageLookupByLibrary.simpleMessage("ภาษา"),
         "signUp": MessageLookupByLibrary.simpleMessage("สมัครสมาชิก"),
-        "signUpWith": m1,
+        "signUpWith": m3,
         "unknowErrorMessage": MessageLookupByLibrary.simpleMessage(
             "เกิดข้อผิดพลาด โปรดลองใหม่อีกครั้งภายหลัง"),
         "unknownChannel":
             MessageLookupByLibrary.simpleMessage("ช่องไม่ทราบชื่อ"),
         "unknownDuration":
-            MessageLookupByLibrary.simpleMessage("ระยะเวลาไม่ทราบ")
+            MessageLookupByLibrary.simpleMessage("ระยะเวลาไม่ทราบ"),
+        "views": m4
       };
 }

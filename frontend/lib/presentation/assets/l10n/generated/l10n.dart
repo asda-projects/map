@@ -389,6 +389,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Channel: {name}`
+  String channel(Object name) {
+    return Intl.message(
+      'Channel: $name',
+      name: 'channel',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Views: {amount}`
+  String views(Object amount) {
+    return Intl.message(
+      'Views: $amount',
+      name: 'views',
+      desc: '',
+      args: [amount],
+    );
+  }
+
+  /// `Duration: {amount}`
+  String duration(Object amount) {
+    return Intl.message(
+      'Duration: $amount',
+      name: 'duration',
+      desc: '',
+      args: [amount],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
