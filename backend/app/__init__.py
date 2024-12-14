@@ -19,6 +19,7 @@ def create_app():
     })
     
     app = Flask(__name__)
+    CORS(app, resources={r"/*": {"origins": "*"}})
     
     app.secret_key =  os.getenv("SECRET_KEY")
 

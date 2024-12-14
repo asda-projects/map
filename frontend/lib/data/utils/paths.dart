@@ -12,27 +12,24 @@ class DirPath {
 class _Routes {
   const _Routes._(); // Private constructor
 
-  String streamAudio() {
-    return  "/stream/";
-  }
 
   String reproduceAudio() {
-    return "/reproduce/";
+    return "/reproduce/music/";
   }
 
   String searchVideos() {
-    return "/search";
+    return "/search/videos";
   }
 
-  String searchImageCover() {
-    return "/search_image_music_cover/";
+  String searchCoverImage() {
+    return "/search/music_cover_image/";
   }
 
 }
 
 class LocalApiPath {
   // Base URL details
-  static const _url = '172.20.10.3';
+  static const _url = '192.168.2.42';
   static const _port = 5000;
 
   static const baseUrl = '$_url:$_port';

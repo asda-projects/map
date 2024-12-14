@@ -36,9 +36,14 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 1 -->🐛 Bug Fixes
 
--   **backend**:  Application run is available for test communication with frontend ([22fefd6](22fefd6b780f86e8b1d166ff632e91159142aa2b))
+-   **frontend**:  Fixed the function that search videos from yt that consume th api ([42e9505](42e95055357d3bab0ba1a5b7b7720dfe54d11954))
+-   **backend**:  Application run is available for test communication with frontend ([c6b88ce](c6b88cea72ad7ae152380f052033220f23079d8d))
 -   **backend**:  Start refactoring the api to load the music correctly ([d71aa19](d71aa19f7ee9dfac9bab038a7de86231d0a4a858))
 -   App.py file was empty, so was full filled with the right code ([7dc3c94](7dc3c94acce4981fe882dceab6ac3bca84f9d0a8))
+
+### <!-- 7 -->⚙️ Miscellaneous Tasks
+
+-   Small change on player to run better ([b8a3905](b8a39054cd31a8867f1ac4f7c22d0f60ce9addd7))
 
 ### Build
 

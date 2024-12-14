@@ -1,12 +1,10 @@
 import subprocess
 from typing import IO
-
 from app.presentation.utils.http_response import MyJson
-from firebase_admin import  storage # type: ignore
+from firebase_admin import storage  # type: ignore
 
 
-
-def download_audio(video_id: str)-> IO[bytes] | None:
+def download_audio(video_id: str) -> IO[bytes] | None:
     command = [
         'yt-dlp',
         '-o', '-',  # Output to stdout
@@ -15,62 +13,84 @@ def download_audio(video_id: str)-> IO[bytes] | None:
     ]
 
     try:
-        # Run yt-dlp and capture the output
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
         return process.stdout
-    
-    except Exception as e:
-
+    except Exception:
         return None
 
 
-def upload_audio(video_id: str) -> MyJson:
-    
-    if not video_id:
-        return MyJson(error = f"video_id", status_code=400, message="Missing video_id parameter", data= [])
-
-    # Command to download audio from YouTube
-
+def upload_audio(user_id: str, video_id: str) -> MyJson:
+    if not video_id or not user_id:
+        return MyJson(
+            error="Missing parameter", 
+            status_code=400, 
+            message="user_id and video_id are required", 
+            data=[]
+        )
 
     try:
-        # Run yt-dlp and capture the output
         downloaded_audio = download_audio(video_id=video_id)
 
         if downloaded_audio:
-            # Get the bucket
+            # Upload to Firebase Storage under user folder
             bucket = storage.bucket()
-            blob = bucket.blob(f'audio_files/{video_id}.m4a')  # Firebase Storage path
+            file_path = f'users/{user_id}/audio_files/{video_id}.m4a'
+            blob = bucket.blob(file_path)
 
             # Stream directly to Firebase Storage
             blob.upload_from_file(downloaded_audio, content_type='audio/mp4')
 
             # Get the public URL
             public_url = blob.public_url
-            return MyJson(error = "No Error", status_code=200, message= "File uploaded successfully", data=public_url)
-        
+            return MyJson(
+                error="No Error", 
+                status_code=200, 
+                message="File uploaded successfully", 
+                data=public_url
+            )
         else:
-            return MyJson(error = "Download", status_code=204, message= "Music not loaded correctly", data=public_url)
-
-        
+            return MyJson(
+                error="Download", 
+                status_code=204, 
+                message="Music not loaded correctly", 
+                data=[]
+            )
 
     except Exception as e:
-        return MyJson(error = f"{e}", status_code=500, message="an unknow error occurs.", data= [])
-    
+        return MyJson(
+            error=str(e), 
+            status_code=500, 
+            message="An unknown error occurred.", 
+            data=[]
+        )
 
-def delete_audio(file_path: str) -> MyJson:
+
+def delete_audio(user_id: str, video_id: str) -> MyJson:
     try:
-        # Get the bucket and delete the file
+        file_path = f'users/{user_id}/audio_files/{video_id}.m4a'
         bucket = storage.bucket()
         blob = bucket.blob(file_path)
 
         if blob.exists():
             blob.delete()
-            return MyJson(error = "No Error", status_code=200, message= "File deleted successfully", data=file_path)
-            
+            return MyJson(
+                error="No Error", 
+                status_code=200, 
+                message="File deleted successfully", 
+                data=file_path
+            )
         else:
-            return MyJson(error = "File", status_code=404, message= "File not found.", data=file_path)
-            
+            return MyJson(
+                error="File", 
+                status_code=404, 
+                message="File not found.", 
+                data=file_path
+            )
 
     except Exception as e:
-        return MyJson(error = f"{e}", status_code=500, message="an unknow error occurs.", data= [])
+        return MyJson(
+            error=str(e), 
+            status_code=500, 
+            message="An unknown error occurred.", 
+            data=[]
+        )
