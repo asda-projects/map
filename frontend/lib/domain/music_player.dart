@@ -17,7 +17,7 @@ class MusicPlayer extends StatefulWidget {
 
 class _MusicPlayerState extends State<MusicPlayer> {
   late AudioPlayer _audioPlayer;
-  AppLogger logger = AppLogger();
+  final AppLogger logger = AppLogger();
   
 
   @override
@@ -29,7 +29,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
   }
 
   Future<void> _loadMusic(String videoId) async {
-    final url = 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.streamAudio()}$videoId';
+    final url = 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.reproduceAudio()}$videoId';
     try {
       await _audioPlayer.setUrl(url);
       await _audioPlayer.play();
@@ -82,7 +82,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
             ),
             child: CachedNetworkImage(
               imageUrl:
-                  "http://${LocalApiPath.baseUrl}${LocalApiPath.routes.searchImageCover()}${widget.listMusic[widget.indexMusic]['video_id']}",
+                  "http://${LocalApiPath.baseUrl}${LocalApiPath.routes.searchCoverImage()}${widget.listMusic[widget.indexMusic]['video_id']}",
               placeholder: (context, url) => Align(
             alignment: Alignment.center,
             child: SizedBox(

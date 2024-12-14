@@ -62,10 +62,12 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch>  {
 
   // Perform a search and save results to cache
   void _searchMusic() async {
+    
     if (!_isMusicServiceInitialized || musicService == null) {
+      
       await _initializeMusicService();
     }
-
+    
     try {
       final query = _searchController.text.trim();
       if (query.isEmpty) {
@@ -73,9 +75,9 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch>  {
         return;
       }
       
-      // Search videos
+      
       final results = await musicService!.searchMusic(query);
-
+      
       if (results.isNotEmpty) {
         setState(() {
           _searchResults = Future.value(results);

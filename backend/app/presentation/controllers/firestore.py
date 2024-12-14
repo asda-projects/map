@@ -10,9 +10,13 @@ firestore_bp = Blueprint(name,  __name__)
 
 @firestore_bp.route('/upload_music', methods=['POST'])
 def upload_music():
-    video_id = request.form.get('video_id')
+    
+    request_form = request.form
 
-    upload_response = upload_audio(video_id=video_id)
+    video_id = request_form.get('video_id')
+    user_id = request_form.get('user_id')
+
+    upload_response = upload_audio(user_id=user_id,video_id=video_id)
 
     return jsonify_response(response=upload_response)
 
@@ -21,7 +25,11 @@ def upload_music():
 
 def delete_music():
 
-    file_path = request.args.get('file_path')
+    request_form = request.form
 
-    delete_response = delete_audio(file_path=file_path)
+    video_id = request_form.get('video_id')
+    user_id = request_form.get('user_id')
+
+    delete_response = delete_audio(user_id=user_id,video_id=video_id)
+    
     return jsonify_response(response=delete_response)

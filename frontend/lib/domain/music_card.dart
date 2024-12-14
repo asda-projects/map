@@ -25,7 +25,7 @@ class MusicCard extends StatelessWidget {
     required this.videoId, 
   });
 
-  AppLogger logger = AppLogger();
+  final AppLogger logger = AppLogger();
   
 
   @override
@@ -60,7 +60,7 @@ class MusicCard extends StatelessWidget {
             ),
             child: CachedNetworkImage(
               imageUrl:
-                  'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.searchImageCover()}$videoId',
+                  'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.searchCoverImage()}$videoId',
               placeholder: (context, url) => Align(
             alignment: Alignment.center,
             child: SizedBox(

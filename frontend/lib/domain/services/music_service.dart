@@ -43,7 +43,7 @@ class MusicService {
   Future<List<Map<String, dynamic>>>  searchMusic(String musicName) async {
 
     final results = await _musicAdapter.searchVideos(musicName);
-
+    
     return results;
 
   // Search Music
