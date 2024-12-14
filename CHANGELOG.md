@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **frontend**:  Created the initial stage of music player ([8c226d3](8c226d3540eacb7734231b1b5d35059f1dab1ef5))
+-   **frontend**:  Middle stage of running music player is completed ([72ec5a8](72ec5a80477ea96580cab27569bb6a9e72ced7e0))
+-   **frontend**:  Created the initial stage of music player ([1ffc60f](1ffc60f7006ea02826dbd30e76ff97bf0e86c1ad))
 -   **frontend**:  Implemented the cache for reload searched musics ([37550d6](37550d6fadd4ce7f5079adc61f6a685b949abcb8))
 -   **backend**:  Removed the cleaning function text from title and channel no to be removed important chars of the name ([612757f](612757f70149567fc5c0da89b4642ab2aa9e0946))
 -   **frontend**:  Made the card for showing the music ([a1b19d1](a1b19d10adf47f048a71346ccba4b3915ce0280c))
@@ -35,6 +36,7 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 1 -->🐛 Bug Fixes
 
+-   **backend**:  Start refactoring the api to load the music correctly ([7fd48b9](7fd48b9a8eb9bed9c10994c3f508192031d7fe4d))
 -   App.py file was empty, so was full filled with the right code ([7dc3c94](7dc3c94acce4981fe882dceab6ac3bca84f9d0a8))
 
 ### Build

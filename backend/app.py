@@ -1,12 +1,24 @@
 import os
 import re
-from flask import Flask, Response, jsonify, request, send_file, stream_with_context
+from flask import Flask, Response, jsonify, request, send_file
 import subprocess
 import requests
 from youtube_search import YoutubeSearch
 from ftfy import fix_text
 from flask_cors import CORS
+import firebase_admin  # type: ignore
+from firebase_admin import credentials, storage # type: ignore
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+# Initialize Firebase
+cred = credentials.Certificate(os.getenv("FIREBASE_SERVICE_ACCOUNT_KEY_PATH"))
+firebase_admin.initialize_app(cred, {
+    'projectId': os.getenv("FIREBASE_PROJECT_ID"),
+    'storageBucket': os.getenv("FIREBASE_STORAGE_BUCKET")
+})
 
 
 app = Flask(__name__)
@@ -15,39 +27,13 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 
-@app.route('/stream/<video_id>')
-def stream_audio(video_id):
-    def generate_audio():
 
 
-        command = [
-            'yt-dlp',
-            '-o', '-',          # Saída em stdout
-            '-f', 'bestaudio',  # Melhor formato de áudio disponível
-            f'https://www.youtube.com/watch?v={video_id}'
-        ]
-
-        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        try:
-
-            while True:
-                chunk = process.stdout.read(8192)
-                if not chunk:
-                    break
-                yield chunk
-        finally:
-            process.kill()
-
-    headers = {
-        "Cache-Control": "no-cache",      # Prevent caching for real-time streaming
-        "Connection": "keep-alive",       # Keeps the connection open for streaming
-        }
-    
-    return Response(stream_with_context(generate_audio()),headers=headers ,mimetype='audio/mpeg')
 
 
 @app.route('/reproduce/<video_id>')
 def reproduce_audio(video_id):
+    # http://172.20.10.3:5000/reproduce/jNJkG8XMeis
     audio_file = f'{video_id}.m4a'
     if not os.path.exists(audio_file):
         # Baixa o áudio se não existir
@@ -71,6 +57,7 @@ def clean_text(text):
     # Remove extra spaces
     text = re.sub(r'\s+', ' ', text).strip()
     return text
+
 
 @app.route('/search', methods=['GET'])
 def search_videos():
@@ -103,7 +90,7 @@ def search_videos():
 
 @app.route('/search_image_music_cover/<video_id>')
 def proxy_image(video_id):
-    # localhost:5000/search_image_music_cover/jNJkG8XMeis
+    # http://172.20.10.3:5000/search_image_music_cover/jNJkG8XMeis
     url = f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg"
     print(f"Requesting image cover at {url}")
     response = requests.get(url, stream=True)
@@ -114,4 +101,5 @@ def proxy_image(video_id):
     
 
 if __name__ == '__main__':
+    
     app.run(host='0.0.0.0', port=5000)

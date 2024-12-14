@@ -2,3 +2,6 @@ flask
 youtube-search
 ftfy
 duckduckgo-images-api
+firebase-admin
+requests
+python-dotenv
