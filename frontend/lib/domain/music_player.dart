@@ -140,9 +140,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
   }
 }
 
-void loadingDelay() async {
-    await Future.delayed(const Duration(seconds: 2));
-  }
+
 
 class PlayerControls extends StatelessWidget {
   final AudioPlayer audioPlayer;

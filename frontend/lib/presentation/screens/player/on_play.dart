@@ -51,6 +51,7 @@ class OnPlayScreenState extends State<OnPlayScreen>  {
                 ),
               ),
             ), Scaffold(
+              appBar: AppBar(),
              extendBodyBehindAppBar: true, // Allows content to extend behind the AppBar
             backgroundColor: Colors.transparent,
 
