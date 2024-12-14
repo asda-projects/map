@@ -1,9 +1,11 @@
 from flask import Blueprint, request
 
-from backend.domain.services.firestore_manager import upload_audio, delete_audio
-from backend.presentation.utils.http_response import jsonify_response
+from app.domain.services.firestore_manager import delete_audio, upload_audio
+from app.presentation.utils.http_response import jsonify_response
 
-firestore_bp = Blueprint(__package__ or __name__.split('.')[0], __name__)
+
+name = __name__.split('.')[-1]
+firestore_bp = Blueprint(name,  __name__)
 
 
 @firestore_bp.route('/upload_music', methods=['POST'])

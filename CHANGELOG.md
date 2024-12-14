@@ -36,7 +36,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 1 -->🐛 Bug Fixes
 
--   **backend**:  Start refactoring the api to load the music correctly ([7fd48b9](7fd48b9a8eb9bed9c10994c3f508192031d7fe4d))
+-   **backend**:  Application run is available for test communication with frontend ([22fefd6](22fefd6b780f86e8b1d166ff632e91159142aa2b))
+-   **backend**:  Start refactoring the api to load the music correctly ([d71aa19](d71aa19f7ee9dfac9bab038a7de86231d0a4a858))
 -   App.py file was empty, so was full filled with the right code ([7dc3c94](7dc3c94acce4981fe882dceab6ac3bca84f9d0a8))
 
 ### Build

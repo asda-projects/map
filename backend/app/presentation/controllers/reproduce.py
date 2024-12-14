@@ -1,9 +1,10 @@
 from flask import Blueprint
 
-from backend.domain.services.reproduce_manager import reproduce_audio_from_firestore
-from backend.presentation.utils.http_response import redirect_to
+from app.domain.services.reproduce_manager import reproduce_audio_from_firestore
+from app.presentation.utils.http_response import redirect_to
 
-reproduce_bp = Blueprint(__package__ or __name__.split('.')[0], __name__)
+name = __name__.split('.')[-1]
+reproduce_bp = Blueprint(name, __name__)
 
 @reproduce_bp.route('/music/<video_id>', methods=['POST'])
 def music(video_id):

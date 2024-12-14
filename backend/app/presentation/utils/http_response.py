@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import Response, json, jsonify
 from dataclasses import dataclass, asdict
 from typing import Dict, Any
 from flask import redirect
@@ -31,6 +31,16 @@ def redirect_to(response: MyJson):
     location = response.data
 
     return redirect(location=location)
+
+def pretty_json_response(response: MyJson):
+
+    # Convert data class to dict 
+    response_dict = asdict(response)
+    status_code = response_dict.pop("status_code")  # Extract status code
+    pretty_response = json.dumps(response_dict, indent=4)
+
+    return Response(pretty_response, mimetype='application/json', status=status_code)
+
 
 
 

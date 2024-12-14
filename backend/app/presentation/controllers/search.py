@@ -1,9 +1,11 @@
 from flask import Blueprint, jsonify, request
 
-from backend.domain.services.search_manager import proxy_for_music_cover_image, youtube_search_videos
-from backend.presentation.utils.http_response import jsonify_response, render_image_response
+from app.domain.services.search_manager import proxy_for_music_cover_image, youtube_search_videos
+from app.presentation.utils.http_response import jsonify_response, render_image_response
 
-search_bp = Blueprint(__package__ or __name__.split('.')[0], __name__)
+
+name = __name__.split('.')[-1]
+search_bp = Blueprint(name, __name__)
 
 @search_bp.route('/videos', methods=['GET'])
 def search_videos():
