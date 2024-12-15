@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
+-   **app**:  Integrating front and backends for process of reproducing music ([f0eb98f](f0eb98fd43dab4d5f7f929f7a52a940d31ca3fb5))
 -   **frontend**:  Middle stage of running music player is completed ([72ec5a8](72ec5a80477ea96580cab27569bb6a9e72ced7e0))
 -   **frontend**:  Created the initial stage of music player ([1ffc60f](1ffc60f7006ea02826dbd30e76ff97bf0e86c1ad))
 -   **frontend**:  Implemented the cache for reload searched musics ([37550d6](37550d6fadd4ce7f5079adc61f6a685b949abcb8))
@@ -36,7 +37,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 1 -->🐛 Bug Fixes
 
--   **frontend**:  Fixed the function that search videos from yt that consume th api ([42e9505](42e95055357d3bab0ba1a5b7b7720dfe54d11954))
+-   **frontend**:  Fixed the function that search videos from yt that consume th api ([d3bb873](d3bb8730b6150ff5e3f95973161dd10cc02c7df6))
+-   **frontend**:  Fixed the function that search videos from yt that consume th api ([c244f50](c244f50dd417c7d9875bfce7b7808057859ca180))
 -   **backend**:  Application run is available for test communication with frontend ([c6b88ce](c6b88cea72ad7ae152380f052033220f23079d8d))
 -   **backend**:  Start refactoring the api to load the music correctly ([d71aa19](d71aa19f7ee9dfac9bab038a7de86231d0a4a858))
 -   App.py file was empty, so was full filled with the right code ([7dc3c94](7dc3c94acce4981fe882dceab6ac3bca84f9d0a8))

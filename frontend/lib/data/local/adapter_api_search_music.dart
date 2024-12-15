@@ -49,6 +49,12 @@ Future<List<Map<String, dynamic>>> searchVideos(String query) async {
   }
 }
 
+  @override
+  Future<List<Map<String, dynamic>>> reproduceMusic(String userId, String videoId) {
+    final response = await 
+
+  }
+
 
 }
 
