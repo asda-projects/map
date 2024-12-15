@@ -25,6 +25,10 @@ class _Routes {
     return "/search/music_cover_image/";
   }
 
+  String uploadAudio() {
+    return "/firestore/upload_music/";
+  }
+
 }
 
 class LocalApiPath {

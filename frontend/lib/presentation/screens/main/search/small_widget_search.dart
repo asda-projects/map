@@ -76,7 +76,7 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch>  {
       }
       
       
-      final results = await musicService!.searchMusic(query);
+      final results = await musicService!.searchVideo(query);
       
       if (results.isNotEmpty) {
         setState(() {
@@ -84,7 +84,7 @@ class SmallWidgetSearchState extends State<SmallWidgetSearch>  {
         });
 
         // Save results to cache
-        await musicService?.saveMusic(results);
+        await musicService?.saveMusicList(results);
         
         
       } else {

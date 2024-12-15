@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **app**:  Integrating front and backends for process of reproducing music ([f0eb98f](f0eb98fd43dab4d5f7f929f7a52a940d31ca3fb5))
+-   **app**:  Initial integration between backend and frontend on uploading the music to firebase ([20403a5](20403a51a01eee47fce170abf6d0609dd2482812))
+-   **app**:  Integrating front and backends for process of reproducing music ([baed7f3](baed7f39d496a4370b5868afb28ad087b7a87dce))
 -   **frontend**:  Middle stage of running music player is completed ([72ec5a8](72ec5a80477ea96580cab27569bb6a9e72ced7e0))
 -   **frontend**:  Created the initial stage of music player ([1ffc60f](1ffc60f7006ea02826dbd30e76ff97bf0e86c1ad))
 -   **frontend**:  Implemented the cache for reload searched musics ([37550d6](37550d6fadd4ce7f5079adc61f6a685b949abcb8))

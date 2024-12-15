@@ -19,7 +19,7 @@ def reproduce_audio_from_firestore(user_id: str, video_id: str) -> MyJson:
                 error="File", 
                 status_code=404, 
                 message="File not found.", 
-                data=file_path
+                data=[]
             )
 
         # Generate signed URL (valid for 1 hour)

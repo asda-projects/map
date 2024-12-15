@@ -4,6 +4,7 @@ import 'package:frontend/data/local/interface_api_search_music.dart';
 import 'package:frontend/data/utils/requests.dart';
 import 'package:frontend/data/utils/paths.dart';
 
+
 class MusicAdapter implements SearchMusicInterface {
 
 
@@ -11,18 +12,7 @@ class MusicAdapter implements SearchMusicInterface {
   final Request request = Request(baseUrl: LocalApiPath.baseUrl, useHttps: false);
   
 
-  @override
-  Future<void> reproduceAudio(String videoId) async {
-    final response = await request.get('${
-      LocalApiPath.routes.reproduceAudio()
-      }$videoId', headers: {
-      'Content-Type': 'audio/mp4',
-    });
 
-    if (response['statusCode'] != 200) {
-      throw Exception('Failed to reproduce audio');
-    }
-  }
 
   @override
 Future<List<Map<String, dynamic>>> searchVideos(String query) async {
@@ -45,16 +35,55 @@ Future<List<Map<String, dynamic>>> searchVideos(String query) async {
       throw Exception('Invalid data format from the server');
     }
   } else {
-    throw Exception('Failed to search videos: ${response['statusCode']}');
+    throw Exception('Failed to search videos, status code ${response['statusCode']}');
   }
 }
 
   @override
-  Future<List<Map<String, dynamic>>> reproduceMusic(String userId, String videoId) {
-    final response = await 
+  Future<MyHttpResponse> reproduceAudio(String userId, String videoId) async {
+    final response = await request.get(
+      "${LocalApiPath.routes.reproduceAudio()}$userId/$videoId"
+      
+    );
 
+    if (response['statusCode'] == 200) {
+    final body = response['body'];
+      
+      if (body is Map<String, dynamic> && body['data'] is String) {
+        return MyHttpResponse(success: true, data:  body['data'], error: body['error']);
+    
+    } else if (response['statusCode'] == 404) {
+      return MyHttpResponse(success: false, data:  body['data'], error: body['error']);
+
+    } else  {
+      throw Exception(body['error']);
+    }
+  } else {
+    throw Exception('Failed to reproduce audio, status code ${response['statusCode']}');
   }
 
+  }
+  
+  @override
+  Future<MyHttpResponse> uploadAudio(String userId, String videoId) async {
+    final response = await request.get(
+      "${LocalApiPath.routes.uploadAudio()}$userId/$videoId"
+    );
+
+    if (response['statusCode'] == 200) {
+    final body = response['body'];
+      if (body is Map<String, dynamic> && body['data'] is String) {
+        return MyHttpResponse(success: true, data:  body['data'], error: body['error']);
+
+    } else if (response['statusCode'] == 204) {
+      return MyHttpResponse(success: false, data:  body['data'], error: body['error']);
+
+  } else  {
+      throw Exception(body['error']);
+    }
+  } else {
+    throw Exception('Failed to reproduce audio, status code ${response['statusCode']}');
+  }
+ }
 
 }
-

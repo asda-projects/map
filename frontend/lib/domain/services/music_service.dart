@@ -17,7 +17,7 @@ class MusicService {
   }
 
   // Save Music
-  Future<void> saveMusic(List<Map<String, dynamic>> musicList) async {
+  Future<void> saveMusicList(List<Map<String, dynamic>> musicList) async {
     String musicJson = jsonEncode(musicList);
     await cache.saveString(_cacheKey, musicJson);
     
@@ -40,14 +40,32 @@ class MusicService {
     return [];
   }
 
-  Future<List<Map<String, dynamic>>>  searchMusic(String musicName) async {
+  Future<List<Map<String, dynamic>>>  searchVideo(String musicName) async {
 
     final results = await _musicAdapter.searchVideos(musicName);
     
     return results;
 
-  // Search Music
-
+  
 }
+  Future<String> reproduceAudio(String userId, String videoId) async {
+
+    final resultsReproduce = await _musicAdapter.reproduceAudio(userId, videoId);
+    
+    if (resultsReproduce.success == true) {
+      return resultsReproduce.data;
+
+    } else if (resultsReproduce.success == false) {
+      final resultsUpload = await _musicAdapter.uploadAudio(userId, videoId);
+
+
+
+
+    } else {
+      throw Exception("Error in service of reproducing Audio");
+    }
+    
+  }
+
 
 }

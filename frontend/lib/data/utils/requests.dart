@@ -107,3 +107,17 @@ class Request{
     return _parseResponse(response);
   }
 }
+
+
+class MyHttpResponse {
+
+  final bool success;
+  final dynamic data;
+  final dynamic error;
+
+  MyHttpResponse({required this.success, required this.data, required this.error});
+
+  
+
+
+}
