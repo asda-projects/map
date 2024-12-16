@@ -25,7 +25,7 @@ def create_app():
     
     app.secret_key =  os.getenv("FLASK_SECRET_KEY")
 
-    app.register_blueprint(cloudinary_controller.firestore_bp, url_prefix=f"/{cloudinary_controller.name}")
+    app.register_blueprint(cloudinary_controller.cloudinary_bp, url_prefix=f"/{cloudinary_controller.name}")
     app.register_blueprint(reproduce.reproduce_bp, url_prefix=f"/{reproduce.name}")
     app.register_blueprint(search.search_bp, url_prefix=f"/{search.name}")
     app.register_blueprint(home.home_bp) # main route does not need url_prefix
