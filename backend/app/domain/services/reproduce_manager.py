@@ -1,27 +1,45 @@
-
-
-
-
 from app.presentation.utils.http_response import MyJson
-from firebase_admin import  storage # type: ignore
+import cloudinary  # type: ignore
+import cloudinary.api  # type: ignore
 
-def reproduce_audio_from_firestore(video_id: str) -> MyJson:
+
+def reproduce_audio_from_cloudinary(user_id: str, video_id: str) -> MyJson:
     try:
-        # Firebase Storage path
-        file_path = f'audio_files/{video_id}.m4a'
+        # Cloudinary Storage path with user-specific storage
+        file_path = f'users/{user_id}/audio_files/{video_id}'
 
-        # Access Firebase Storage
-        bucket = storage.bucket()
-        blob = bucket.blob(file_path)
+        # Check if the file exists on Cloudinary
+        try:
+            resource_info = cloudinary.api.resource(file_path, resource_type="video")
+            audio_url = resource_info.get("secure_url")
 
-        if not blob.exists():
-            return MyJson(error = "File", status_code=404, message= "File not found.", data=file_path)
+            if audio_url:
+                return MyJson(
+                    error="No Error", 
+                    status_code=200, 
+                    message="Audio file found successfully.", 
+                    data=audio_url
+                )
+            else:
+                return MyJson(
+                    error="File", 
+                    status_code=404, 
+                    message="File not found.", 
+                    data=[]
+                )
 
-        # Generate signed URL (valid for 1 hour)
-        audio_url = blob.generate_signed_url(expiration=3600)
-
-        # Redirect user to the file's URL
-        return MyJson(error = "No Error", status_code=200, message= "Generated signed URL, is valid for 1 hour.", data=audio_url)
+        except cloudinary.exceptions.NotFound:
+            return MyJson(
+                error="File", 
+                status_code=404, 
+                message="File not found.", 
+                data=[]
+            )
 
     except Exception as e:
-        return MyJson(error = f"{e}", status_code=500, message="an unknow error occurs.", data= [])
+        return MyJson(
+            error=str(e), 
+            status_code=500, 
+            message="An unknown error occurred.", 
+            data=[]
+        )
