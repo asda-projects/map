@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from app.presentation.controllers import reproduce, search, home
 
-from app.presentation.controllers import ccloudinary as cloudinary_controller
+from app.presentation.controllers import cloudinary as cloudinary_controller
 import cloudinary # type: ignore
 import os
 

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/data/remote/firebase_auth_adpter.dart';
 import 'package:frontend/data/utils/paths.dart';
 import 'package:frontend/domain/services/logs.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
@@ -18,6 +19,7 @@ class MusicPlayer extends StatefulWidget {
 class _MusicPlayerState extends State<MusicPlayer> {
   late AudioPlayer _audioPlayer;
   final AppLogger logger = AppLogger();
+  final FirebaseAuthAdapter _firebaseAuthAdapter = FirebaseAuthAdapter();
   
 
   @override
@@ -29,7 +31,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
   }
 
   Future<void> _loadMusic(String videoId) async {
-    final url = 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.reproduceAudio()}$videoId';
+
+
+    String userId = _firebaseAuthAdapter.currentUser()!.uid;
+    
+    final url = 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.reproduceAudio()}$userId/$videoId';
     try {
       await _audioPlayer.setUrl(url);
       await _audioPlayer.play();

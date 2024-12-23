@@ -24,3 +24,4 @@ def delete_music(user_id, video_id):
     delete_response = delete_audio(user_id=user_id,video_id=video_id)
     
     return jsonify_response(response=delete_response)
+

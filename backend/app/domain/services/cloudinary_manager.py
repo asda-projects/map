@@ -59,7 +59,7 @@ def upload_audio(user_id: str, video_id: str) -> MyJson:
             return MyJson(
                 error="Download", 
                 status_code=204, 
-                message="Music not loaded correctly", 
+                message="Request processed but th music was not loaded correctly", 
                 data=[]
             )
 

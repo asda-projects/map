@@ -36,7 +36,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 1 -->🐛 Bug Fixes
 
--   **backend**:  Fixed blueprint name on __init__ for cloudinary ([3781149](3781149c3486b46bad5a447cd8269e0e0e78c1bf))
+-   **app**:  Fixed the reproduce process to play the song completely ([c6ac12c](c6ac12ca6cfc3ed5c92fd0a2257baee4d4555608))
+-   **backend**:  Fixed blueprint name on __init__ for cloudinary ([39d4ba6](39d4ba6fabb7b7e264d88e7456b214aa421d6ea5))
 -   Force-applied stash and overwrote local changes ([3e4077c](3e4077c487bd1382a78c624f54769ef2b2b44333))
 -   **frontend**:  Fixed the function that search videos from yt that consume th api ([d3bb873](d3bb8730b6150ff5e3f95973161dd10cc02c7df6))
 -   **backend**:  Application run is available for test communication with frontend ([c6b88ce](c6b88cea72ad7ae152380f052033220f23079d8d))

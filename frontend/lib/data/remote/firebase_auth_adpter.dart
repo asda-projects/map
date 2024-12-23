@@ -146,4 +146,9 @@ class FirebaseAuthAdapter implements AuthInterface {
       logger.debug("Logout Error: $e\n$stacktrace");
     }
   }
+  
+  @override
+  User? currentUser() {
+    return _firebaseAuth.currentUser;
+  }
 }
