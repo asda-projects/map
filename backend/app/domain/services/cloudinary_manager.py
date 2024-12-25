@@ -3,7 +3,8 @@ import subprocess
 from typing import IO
 import cloudinary.uploader   # type: ignore
 from app.presentation.utils.http_response import MyJson
-
+from pydub import AudioSegment # type: ignore
+from io import BytesIO
 
 def download_audio(video_id: str) -> bytes | None:
     command = [
@@ -15,7 +16,11 @@ def download_audio(video_id: str) -> bytes | None:
 
     try:
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        audio_data = process.stdout.read()  # Read the stream into memory
+        audio_data, error = process.communicate()
+        # audio_data = process.stdout.read()  Read the stream into memory, but it seems load twice the audio
+        if process.returncode != 0:
+            print(f"Download error: {error.decode('utf-8')}")
+            return None
 
         return audio_data  # Return raw audio data
 
@@ -23,6 +28,9 @@ def download_audio(video_id: str) -> bytes | None:
         print(f"Download error: {e}")
         return None
 
+def process_audio(raw_audio: bytes) -> bytes:
+    audio = AudioSegment.from_file(BytesIO(raw_audio), format="m4a")
+    return audio.export(format="mp3").read()
 
 def upload_audio(user_id: str, video_id: str) -> MyJson:
     if not video_id or not user_id:
@@ -37,12 +45,17 @@ def upload_audio(user_id: str, video_id: str) -> MyJson:
         downloaded_audio = download_audio(video_id=video_id)
 
         if downloaded_audio:
+            # Cloudinary treats the uploaded file as a "video" (likely because of resource_type="video"). 
+            # If the raw audio is not properly encoded or includes non-audio data,
+            #  Cloudinary might process the file as a longer-than-expected track.
+            processed_audio = process_audio(downloaded_audio)
+            
             folder_path = f'users/{user_id}'
             file_path = f'audio_files/{video_id}'
 
             # Upload to Cloudinary
             upload_result = cloudinary.uploader.upload(
-                BytesIO(downloaded_audio),
+                BytesIO(processed_audio),
                 resource_type="video",
                 public_id=f'{folder_path}/{file_path}',
                 overwrite=True
