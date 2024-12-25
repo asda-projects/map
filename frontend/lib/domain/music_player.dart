@@ -40,7 +40,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
       await _audioPlayer.setUrl(url);
       await _audioPlayer.play();
     } catch (e) {
-      logger.debug("Error loading audio: $e");
+      return ;
     }
   }
 
@@ -165,37 +165,55 @@ class PlayerControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          icon: Icon(Icons.skip_previous),
+          icon: Icon(Icons.skip_previous,size: 40),
           onPressed: onPrevious,
         ),
         StreamBuilder<PlayerState>(
-          stream: audioPlayer.playerStateStream,
-          builder: (context, snapshot) {
-            
-            if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Align(
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator()),
-                );
-        }
-        if (snapshot.hasError || !snapshot.hasData) {
-          return Icon(Icons.error_outline, size: 40);
-        }
-            final state = snapshot.data;
-            final isPlaying = state?.playing ?? false;
-            return IconButton(
-              icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
-              onPressed: () {
-                isPlaying ? audioPlayer.pause() : audioPlayer.play();
-              },
-            );
-          },
+  stream: audioPlayer.playerStateStream,
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const Align(
+        alignment: Alignment.center,
+        child: SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(),
         ),
+      );
+    }
+
+    if (snapshot.hasError || !snapshot.hasData) {
+      return const Icon(Icons.error_outline, size: 40);
+    }
+
+    final state = snapshot.data;
+    final isPlaying = state?.playing ?? false;
+    final isLoading = state?.processingState == ProcessingState.loading ||
+        state?.processingState == ProcessingState.buffering;
+
+    if (isLoading) {
+      return const SizedBox(
+        width: 40,
+        height: 40,
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    return IconButton(
+      icon: Icon(
+        isPlaying ? Icons.pause : Icons.play_arrow,
+        size: 40,
+        ),
+      onPressed: () {
+        isPlaying ? audioPlayer.pause() : audioPlayer.play();
+      },
+    );
+  },
+),
         IconButton(
-          icon: Icon(Icons.skip_next),
+          icon: Icon(Icons.skip_next,
+        size: 40
+        ),
           onPressed: onNext,
         ),
       ],
