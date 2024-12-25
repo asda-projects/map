@@ -1,12 +1,13 @@
+from io import BytesIO
 import subprocess
 from typing import IO
+import cloudinary.uploader   # type: ignore
 from app.presentation.utils.http_response import MyJson
-from firebase_admin import storage  # type: ignore
 
 
-def download_audio(video_id: str) -> IO[bytes] | None:
+def download_audio(video_id: str) -> bytes | None:
     command = [
-        'yt-dlp',
+        'yt-dlp', '--verbose',
         '-o', '-',  # Output to stdout
         '-f', 'bestaudio[ext=m4a]',
         f'https://www.youtube.com/watch?v={video_id}'
@@ -14,8 +15,12 @@ def download_audio(video_id: str) -> IO[bytes] | None:
 
     try:
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        return process.stdout
-    except Exception:
+        audio_data = process.stdout.read()  # Read the stream into memory
+
+        return audio_data  # Return raw audio data
+
+    except Exception as e:
+        print(f"Download error: {e}")
         return None
 
 
@@ -32,16 +37,18 @@ def upload_audio(user_id: str, video_id: str) -> MyJson:
         downloaded_audio = download_audio(video_id=video_id)
 
         if downloaded_audio:
-            # Upload to Firebase Storage under user folder
-            bucket = storage.bucket()
-            file_path = f'users/{user_id}/audio_files/{video_id}.m4a'
-            blob = bucket.blob(file_path)
+            folder_path = f'users/{user_id}'
+            file_path = f'audio_files/{video_id}'
 
-            # Stream directly to Firebase Storage
-            blob.upload_from_file(downloaded_audio, content_type='audio/mp4')
+            # Upload to Cloudinary
+            upload_result = cloudinary.uploader.upload(
+                BytesIO(downloaded_audio),
+                resource_type="video",
+                public_id=f'{folder_path}/{file_path}',
+                overwrite=True
+            )
 
-            # Get the public URL
-            public_url = blob.public_url
+            public_url = upload_result.get("secure_url")
             return MyJson(
                 error="No Error", 
                 status_code=200, 
@@ -52,7 +59,7 @@ def upload_audio(user_id: str, video_id: str) -> MyJson:
             return MyJson(
                 error="Download", 
                 status_code=204, 
-                message="Music not loaded correctly", 
+                message="Request processed but th music was not loaded correctly", 
                 data=[]
             )
 
@@ -67,24 +74,28 @@ def upload_audio(user_id: str, video_id: str) -> MyJson:
 
 def delete_audio(user_id: str, video_id: str) -> MyJson:
     try:
-        file_path = f'users/{user_id}/audio_files/{video_id}.m4a'
-        bucket = storage.bucket()
-        blob = bucket.blob(file_path)
+        folder_path = f'users/{user_id}'
+        file_path = f'audio_files/{video_id}'
 
-        if blob.exists():
-            blob.delete()
+        # Delete from Cloudinary
+        delete_result = cloudinary.uploader.destroy(
+            public_id=f'{folder_path}/{file_path}',
+            resource_type="video"
+        )
+
+        if delete_result.get("result") == "ok":
             return MyJson(
                 error="No Error", 
                 status_code=200, 
                 message="File deleted successfully", 
-                data=file_path
+                data=f'{folder_path}/{file_path}'
             )
         else:
             return MyJson(
                 error="File", 
                 status_code=404, 
                 message="File not found.", 
-                data=file_path
+                data=f'{folder_path}/{file_path}'
             )
 
     except Exception as e:

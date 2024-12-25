@@ -5,3 +5,6 @@ duckduckgo-images-api
 firebase-admin
 requests
 python-dotenv
+cloudinary
+Flask-Cors
+yt-dlp
