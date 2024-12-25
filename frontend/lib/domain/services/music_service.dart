@@ -4,10 +4,12 @@ import 'package:frontend/data/local/adapter_local_cache.dart';
 
 
 
+
 class MusicService {
   static const String _cacheKey = "music_list";
   final LocalCacheAdapter cache;
   final MusicAdapter _musicAdapter = MusicAdapter();
+  
 
   MusicService._(this.cache);
 
@@ -66,6 +68,6 @@ class MusicService {
     }
     
   }
-
+  
 
 }

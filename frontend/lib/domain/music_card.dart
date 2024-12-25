@@ -51,8 +51,8 @@ class MusicCard extends StatelessWidget {
         children: [
           // Video Thumbnail Placeholder
           Container(
-            height: 60,
-            width: 60,
+            height: 80,
+            width: 80,
             margin: const EdgeInsets.only(left: 10),
             decoration: const BoxDecoration(
               color: Colors.transparent,

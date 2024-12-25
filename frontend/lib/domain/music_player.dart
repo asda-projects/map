@@ -35,6 +35,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
     super.initState();
     _audioPlayer = AudioPlayer();
     
+      _audioPlayer.processingStateStream.listen((state) async {
+      if (state == ProcessingState.ready) {
+        await _audioPlayer.play(); // Automatically play when ready
+      }
+    });
     
     _loadMusic(widget.listMusic[widget.indexMusic]['video_id']);
     
@@ -47,18 +52,23 @@ class _MusicPlayerState extends State<MusicPlayer> {
   }
 
   Future<void> _loadMusic(String videoId) async {
+  String userId = _firebaseAuthAdapter.currentUser()!.uid;
+  final url = 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.reproduceAudio()}$userId/$videoId';
 
-
-    String userId = _firebaseAuthAdapter.currentUser()!.uid;
-    
-    final url = 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.reproduceAudio()}$userId/$videoId';
-    try {
+  try {
+      // Set the URL and prepare the audio player
       await _audioPlayer.setUrl(url);
-      await _audioPlayer.play();
 
-    
+      // Wait until the player is ready or transitions out of buffering/loading state
+      //_audioPlayer.processingStateStream.firstWhere((state) =>
+      //    state == ProcessingState.ready ||
+      //    state == ProcessingState.completed ||
+     //     state == ProcessingState.idle);
+
+    // Automatically play once ready
+      await _audioPlayer.play();
     } catch (e) {
-      return ;
+    return ;
     }
   }
 
@@ -81,7 +91,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     }
   }
 
-  Duration parsedDuration(String durationString) {
+  Duration totalDuration(String durationString) {
   final parts = durationString.split(':');
   if (parts.length == 2) {
     final minutes = int.tryParse(parts[0]) ?? 0;
@@ -96,22 +106,22 @@ class _MusicPlayerState extends State<MusicPlayer> {
     return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          Center(
+            child: Text(
             widget.listMusic[widget.indexMusic]['title'] ?? S.of(context).noTitle,
             style: TextStyle(
               fontSize: 24, 
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSurface
+              color: Theme.of(context).colorScheme.onSurface,
               
               ),
-          ),
+          )),
           SizedBox(height: 10),
           Container(
             height: 200,
             width: 250,
             margin: const EdgeInsets.only(left: 10),
             decoration: const BoxDecoration(
-              color: Colors.transparent,
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
             ),
             child: CachedNetworkImage(
@@ -133,15 +143,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
           SizedBox(height: 20),
           
           Text(
-            S.of(context).channel("${widget.listMusic[widget.indexMusic]['channel'] ?? S.of(context).unknownChannel}"),
-            style: TextStyle(
-              fontSize: 16, 
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSurface
-              
-              )),
-          Text(
-            S.of(context).views("${widget.listMusic[widget.indexMusic]['views'] ??  S.of(context).noViews}"),
+            widget.listMusic[widget.indexMusic]['channel'] ?? S.of(context).unknownChannel,
             style: TextStyle(
               fontSize: 16, 
               fontWeight: FontWeight.bold,
@@ -150,9 +152,14 @@ class _MusicPlayerState extends State<MusicPlayer> {
               )),
           
           SizedBox(height: 20),
+          
         SizedBox(
           width: 360,
-          child: LoadingIndicatorSong(audioPlayer: _audioPlayer)
+          child: LoadingIndicatorPlayer(
+            audioPlayer: _audioPlayer, 
+            totalDuration: totalDuration(
+            widget.listMusic[widget.indexMusic]['duration']
+          ))
           ),
         SizedBox(height: 10),
           PlayerControls(
@@ -211,6 +218,7 @@ class PlayerControls extends StatelessWidget {
 
     final state = snapshot.data;
     final isPlaying = state?.playing ?? false;
+    
     final isLoading = state?.processingState == ProcessingState.loading ||
         state?.processingState == ProcessingState.buffering;
 
@@ -223,7 +231,7 @@ class PlayerControls extends StatelessWidget {
         ),
       );
     }
-
+    
     return IconButton(
       icon: Icon(
         isPlaying ? Icons.pause : Icons.play_arrow,
@@ -247,50 +255,72 @@ class PlayerControls extends StatelessWidget {
 }
 
 
-
-class LoadingIndicatorSong extends StatelessWidget {
+class LoadingIndicatorPlayer extends StatefulWidget {
   final AudioPlayer audioPlayer;
+  final Duration totalDuration; // Pre-computed total duration passed as a param
 
-  const LoadingIndicatorSong({super.key, required this.audioPlayer});
+  const LoadingIndicatorPlayer({
+    super.key,
+    required this.audioPlayer,
+    required this.totalDuration,
+  });
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _LoadingIndicatorPlayerState createState() => _LoadingIndicatorPlayerState();
+}
+
+class _LoadingIndicatorPlayerState extends State<LoadingIndicatorPlayer> {
+  Duration _currentPosition = Duration.zero;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Listen to the current position and update the UI
+    widget.audioPlayer.positionStream.listen((position) {
+      setState(() {
+        _currentPosition = position;
+      });
+    });
+    
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      
       children: [
-        
-        StreamBuilder<Duration?>(
-          stream: audioPlayer.durationStream,
-          builder: (context, snapshot) {
-            final totalDuration = snapshot.data ?? Duration.zero;
-            return StreamBuilder<Duration>(
-              stream: audioPlayer.positionStream,
-              builder: (context, positionSnapshot) {
-                final currentPosition = positionSnapshot.data ?? Duration.zero;
-                final progress = totalDuration.inMilliseconds > 0
-                    ? currentPosition.inMilliseconds /
-                        totalDuration.inMilliseconds
-                    : 0.0;
-                return Column(
-                  children: [
-                    LinearProgressIndicator(
-                      value: progress,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.onSurface),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      '${_formatDuration(currentPosition)} / ${_formatDuration(totalDuration)}',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.onSurface
-                      ),
-                    ),
-                  ],
-                );
-              },
-            );
+        Slider(
+          min: 0.0,
+          max: widget.totalDuration.inMilliseconds.toDouble(),
+          value: _currentPosition.inMilliseconds.toDouble().clamp(0.0, widget.totalDuration.inMilliseconds.toDouble()),
+          onChanged: (value) {
+            setState(() {
+              _currentPosition = Duration(milliseconds: value.toInt());
+            });
           },
+          onChangeEnd: (value) {
+            widget.audioPlayer.seek(Duration(milliseconds: value.toInt()));
+          },
+          activeColor: Theme.of(context).colorScheme.onSurface,
+          inactiveColor: Theme.of(context).colorScheme.onSecondary,
         ),
+        SizedBox(height: 10),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              _formatDuration(_currentPosition),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            Spacer(),
+            Text(
+              _formatDuration(widget.totalDuration),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ],
+        )
       ],
     );
   }
@@ -301,4 +331,3 @@ class LoadingIndicatorSong extends StatelessWidget {
     return '$minutes:$seconds';
   }
 }
-

@@ -35,7 +35,7 @@
   "unknownDuration": "Unknown Duration",
   "noViews": "No Views",
   "channel": "Channel: {name}",
-  "views": "Views: {amount}",
+  "views": "{amount} Views",
   "duration": "Duration: {amount}"
 
 }

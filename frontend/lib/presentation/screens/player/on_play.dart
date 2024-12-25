@@ -1,4 +1,5 @@
 
+import 'package:animate_gradient/animate_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/presentation/screens/player/small_widget_play.dart';
 import 'package:frontend/presentation/screens/player/wide_widget_play.dart';
@@ -36,22 +37,21 @@ class OnPlayScreenState extends State<OnPlayScreen>  {
     return Stack(
         children: [
           // Gradient background
-            AnimatedContainer(
-              
-              duration: Duration(seconds: 3),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                  Colors.white.withOpacity(1), // Return to soft pink
-                  Colors.grey.shade300,
-                  Color(0xFFD6A49B).withOpacity(0.7), // Soft pink
-                            ],
-                ),
+            AnimateGradient(
+                primaryColors: [
+                  Theme.of(context).primaryColor, // Dusty Rose
+                  Theme.of(context).primaryColor.withOpacity(0.4), // Decayed Dusty Rose
+                  Theme.of(context).colorScheme.onSecondary
+                ],
+                secondaryColors: [
+                  Theme.of(context).colorScheme.onSecondary,
+                  Theme.of(context).primaryColor.withOpacity(0.4), // Muted Dusty Rose
+                  Theme.of(context).primaryColor
+                ],
+              ), Scaffold(
+              appBar: AppBar(
+                backgroundColor: Theme.of(context).colorScheme.onSurface,
               ),
-            ), Scaffold(
-              appBar: AppBar(),
              extendBodyBehindAppBar: true, // Allows content to extend behind the AppBar
             backgroundColor: Colors.transparent,
 

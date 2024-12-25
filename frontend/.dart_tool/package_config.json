@@ -26,6 +26,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "animate_gradient",
+      "rootUri": "file:///Users/pong/.pub-cache/hosted/pub.dev/animate_gradient-0.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "animated_background",
       "rootUri": "file:///Users/pong/.pub-cache/hosted/pub.dev/animated_background-2.0.0",
       "packageUri": "lib/",
@@ -60,12 +66,6 @@
       "rootUri": "file:///Users/pong/.pub-cache/hosted/pub.dev/audio_session-0.1.21",
       "packageUri": "lib/",
       "languageVersion": "2.17"
-    },
-    {
-      "name": "audio_waveforms",
-      "rootUri": "file:///Users/pong/.pub-cache/hosted/pub.dev/audio_waveforms-1.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
     },
     {
       "name": "boolean_selector",
@@ -794,7 +794,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-25T05:54:02.259485Z",
+  "generated": "2024-12-25T14:21:11.267833Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///usr/local/flutter",

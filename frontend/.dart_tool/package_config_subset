@@ -10,6 +10,10 @@ analyzer
 3.3
 file:///Users/pong/.pub-cache/hosted/pub.dev/analyzer-6.7.0/
 file:///Users/pong/.pub-cache/hosted/pub.dev/analyzer-6.7.0/lib/
+animate_gradient
+2.16
+file:///Users/pong/.pub-cache/hosted/pub.dev/animate_gradient-0.0.3/
+file:///Users/pong/.pub-cache/hosted/pub.dev/animate_gradient-0.0.3/lib/
 animated_background
 2.12
 file:///Users/pong/.pub-cache/hosted/pub.dev/animated_background-2.0.0/
@@ -34,10 +38,6 @@ audio_session
 2.17
 file:///Users/pong/.pub-cache/hosted/pub.dev/audio_session-0.1.21/
 file:///Users/pong/.pub-cache/hosted/pub.dev/audio_session-0.1.21/lib/
-audio_waveforms
-3.0
-file:///Users/pong/.pub-cache/hosted/pub.dev/audio_waveforms-1.2.0/
-file:///Users/pong/.pub-cache/hosted/pub.dev/audio_waveforms-1.2.0/lib/
 boolean_selector
 2.17
 file:///Users/pong/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1/

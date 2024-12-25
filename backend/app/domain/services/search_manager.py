@@ -44,7 +44,7 @@ def youtube_search_videos(query: str) -> MyJson:
         return MyJson(error = "No Error", status_code=200, message="search sucessfull.", data= videos)
 
     except Exception as e:
-        
+        print(e)
         return MyJson(error = f"{e}", status_code=500, message="an unknow error occurs.", data= [])
     
 
