@@ -38,7 +38,7 @@ def upload_audio(user_id: str, video_id: str) -> MyJson:
             error="Missing parameter", 
             status_code=400, 
             message="user_id and video_id are required", 
-            data=[]
+            data=''
         )
 
     try:
@@ -73,7 +73,7 @@ def upload_audio(user_id: str, video_id: str) -> MyJson:
                 error="Download", 
                 status_code=204, 
                 message="Request processed but th music was not loaded correctly", 
-                data=[]
+                data=''
             )
 
     except Exception as e:
@@ -81,7 +81,7 @@ def upload_audio(user_id: str, video_id: str) -> MyJson:
             error=str(e), 
             status_code=500, 
             message="An unknown error occurred.", 
-            data=[]
+            data=''
         )
 
 
@@ -116,5 +116,5 @@ def delete_audio(user_id: str, video_id: str) -> MyJson:
             error=str(e), 
             status_code=500, 
             message="An unknown error occurred.", 
-            data=[]
+            data=''
         )

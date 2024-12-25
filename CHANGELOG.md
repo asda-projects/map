@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
+-   **app**:  Add reusable LoadingBarSong widget with progress bar and timer ([936821a](936821a4c93705cf3607960e839463403fa461ff))
 -   **app**:  Initial integration between backend and frontend on uploading the music to firebase ([b91e6b9](b91e6b98c9d9a92d31b99b056291ff788cd86ad6))
 -   **app**:  Integrating front and backends for process of reproducing music ([baed7f3](baed7f39d496a4370b5868afb28ad087b7a87dce))
 -   **frontend**:  Middle stage of running music player is completed ([72ec5a8](72ec5a80477ea96580cab27569bb6a9e72ced7e0))
@@ -38,7 +39,7 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 1 -->🐛 Bug Fixes
 
--   **backend**:  Resolve issue with duplicate audio duration during upload ([83a6c5b](83a6c5b2709915c6fd96c465ac1ec64cd4cbad57))
+-   **backend**:  Resolve issue with duplicate audio duration during upload ([b77a887](b77a88780867bab870999bcc170d41871356c355))
 -   **frontend**:  Loading process icon running as wait to load music ([08b9992](08b99929b988fafda1d7c005429dead887fc4c25))
 -   **app**:  Fixed the reproduce process to play the song completely ([400a12c](400a12c492443cc891cd398869bd235ad8b8d1cc))
 -   **backend**:  Fixed blueprint name on __init__ for cloudinary ([39d4ba6](39d4ba6fabb7b7e264d88e7456b214aa421d6ea5))

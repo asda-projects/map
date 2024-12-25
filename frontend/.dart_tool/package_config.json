@@ -62,6 +62,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "audio_waveforms",
+      "rootUri": "file:///Users/pong/.pub-cache/hosted/pub.dev/audio_waveforms-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///Users/pong/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
@@ -788,7 +794,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-15T10:55:03.711186Z",
+  "generated": "2024-12-25T05:54:02.259485Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///usr/local/flutter",

@@ -58,7 +58,7 @@ class MusicService {
     } else if (resultsReproduce.success == false) {
       final resultsUpload = await _musicAdapter.uploadAudio(userId, videoId);
 
-
+      return resultsUpload.data;
 
 
     } else {

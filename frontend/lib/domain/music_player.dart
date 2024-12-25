@@ -1,3 +1,6 @@
+
+
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/data/remote/firebase_auth_adpter.dart';
@@ -5,6 +8,8 @@ import 'package:frontend/data/utils/paths.dart';
 import 'package:frontend/domain/services/logs.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 import 'package:just_audio/just_audio.dart';
+
+
 
 class MusicPlayer extends StatefulWidget {
   final List<Map<String, dynamic>> listMusic;
@@ -17,17 +22,28 @@ class MusicPlayer extends StatefulWidget {
 }
 
 class _MusicPlayerState extends State<MusicPlayer> {
-  late AudioPlayer _audioPlayer;
+  late  AudioPlayer _audioPlayer;
+  
   final AppLogger logger = AppLogger();
   final FirebaseAuthAdapter _firebaseAuthAdapter = FirebaseAuthAdapter();
+  
+
   
 
   @override
   void initState() {
     super.initState();
     _audioPlayer = AudioPlayer();
+    
+    
     _loadMusic(widget.listMusic[widget.indexMusic]['video_id']);
     
+  }
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    
+    super.dispose();
   }
 
   Future<void> _loadMusic(String videoId) async {
@@ -39,6 +55,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
     try {
       await _audioPlayer.setUrl(url);
       await _audioPlayer.play();
+
+    
     } catch (e) {
       return ;
     }
@@ -62,6 +80,16 @@ class _MusicPlayerState extends State<MusicPlayer> {
       _loadMusic(widget.listMusic[widget.indexMusic]['video_id']);
     }
   }
+
+  Duration parsedDuration(String durationString) {
+  final parts = durationString.split(':');
+  if (parts.length == 2) {
+    final minutes = int.tryParse(parts[0]) ?? 0;
+    final seconds = int.tryParse(parts[1]) ?? 0;
+    return Duration(minutes: minutes, seconds: seconds);
+  }
+  return Duration(seconds: 1); // Default to zero if parsing fails
+}
 
   @override
   Widget build(BuildContext context) {
@@ -120,16 +148,13 @@ class _MusicPlayerState extends State<MusicPlayer> {
               color: Theme.of(context).colorScheme.onSurface
               
               )),
-          Text(
-            S.of(context).duration("${widget.listMusic[widget.indexMusic]['duration'] ?? S.of(context).unknownDuration}"),
-            style: TextStyle(
-              fontSize: 16, 
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSurface
-              
-              )),
-          SizedBox(height: 20),
           
+          SizedBox(height: 20),
+        SizedBox(
+          width: 360,
+          child: LoadingIndicatorSong(audioPlayer: _audioPlayer)
+          ),
+        SizedBox(height: 10),
           PlayerControls(
             audioPlayer: _audioPlayer,
             onNext: _playNext,
@@ -139,11 +164,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
         ]);
   }
 
-  @override
-  void dispose() {
-    _audioPlayer.dispose();
-    super.dispose();
-  }
+
 }
 
 
@@ -172,12 +193,14 @@ class PlayerControls extends StatelessWidget {
   stream: audioPlayer.playerStateStream,
   builder: (context, snapshot) {
     if (snapshot.connectionState == ConnectionState.waiting) {
-      return const Align(
+      return  Align(
         alignment: Alignment.center,
         child: SizedBox(
           width: 20,
           height: 20,
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
         ),
       );
     }
@@ -192,10 +215,12 @@ class PlayerControls extends StatelessWidget {
         state?.processingState == ProcessingState.buffering;
 
     if (isLoading) {
-      return const SizedBox(
+      return  SizedBox(
         width: 40,
         height: 40,
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
       );
     }
 
@@ -220,3 +245,60 @@ class PlayerControls extends StatelessWidget {
     );
   }
 }
+
+
+
+class LoadingIndicatorSong extends StatelessWidget {
+  final AudioPlayer audioPlayer;
+
+  const LoadingIndicatorSong({super.key, required this.audioPlayer});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      
+      children: [
+        
+        StreamBuilder<Duration?>(
+          stream: audioPlayer.durationStream,
+          builder: (context, snapshot) {
+            final totalDuration = snapshot.data ?? Duration.zero;
+            return StreamBuilder<Duration>(
+              stream: audioPlayer.positionStream,
+              builder: (context, positionSnapshot) {
+                final currentPosition = positionSnapshot.data ?? Duration.zero;
+                final progress = totalDuration.inMilliseconds > 0
+                    ? currentPosition.inMilliseconds /
+                        totalDuration.inMilliseconds
+                    : 0.0;
+                return Column(
+                  children: [
+                    LinearProgressIndicator(
+                      value: progress,
+                      backgroundColor: Colors.grey[300],
+                      valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.onSurface),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      '${_formatDuration(currentPosition)} / ${_formatDuration(totalDuration)}',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onSurface
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  String _formatDuration(Duration duration) {
+    final minutes = duration.inMinutes.remainder(60).toString().padLeft(2, '0');
+    final seconds = duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+    return '$minutes:$seconds';
+  }
+}
+
