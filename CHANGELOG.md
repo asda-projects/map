@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **player**:  Add song progress slider and auto-play on readiness ([56e4b72](56e4b7294a3ef132de6f871c1abb7fac720db47a))
+-   **backend**:  Created a initial structure to api be able to consume file api server ([9177f61](9177f6120e89d6b2f4a96d4c7f08a1cef01f10bf))
+-   **player**:  Add song progress slider and auto-play on readiness ([8249c71](8249c71f1f6409bd3c2e3602d23436e995a58aaa))
 -   **app**:  Add reusable LoadingBarSong widget with progress bar and timer ([eaee470](eaee470fec6332c254a012bee77514079f76ab29))
 -   **app**:  Initial integration between backend and frontend on uploading the music to firebase ([b91e6b9](b91e6b98c9d9a92d31b99b056291ff788cd86ad6))
 -   **app**:  Integrating front and backends for process of reproducing music ([baed7f3](baed7f39d496a4370b5868afb28ad087b7a87dce))
