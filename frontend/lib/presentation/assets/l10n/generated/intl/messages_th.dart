@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "authGreetingsSignUp": MessageLookupByLibrary.simpleMessage(
             "มาร่วมกับเราและฟังเสียงหัวใจของคุณเต้น!"),
         "channel": m0,
+        "clipboardShareMusic": MessageLookupByLibrary.simpleMessage(
+            "🔗 คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว! 🎉"),
         "downloadedMusic": MessageLookupByLibrary.simpleMessage("ที่ดาวน์โหลด"),
         "duration": m1,
         "email": MessageLookupByLibrary.simpleMessage("อีเมล"),

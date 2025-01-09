@@ -400,10 +400,10 @@ class S {
     );
   }
 
-  /// `Views: {amount}`
+  /// `{amount} Views`
   String views(Object amount) {
     return Intl.message(
-      'Views: $amount',
+      '$amount Views',
       name: 'views',
       desc: '',
       args: [amount],
@@ -417,6 +417,16 @@ class S {
       name: 'duration',
       desc: '',
       args: [amount],
+    );
+  }
+
+  /// `🔗 Link copied to clipboard! 🎉`
+  String get clipboardShareMusic {
+    return Intl.message(
+      '🔗 Link copied to clipboard! 🎉',
+      name: 'clipboardShareMusic',
+      desc: '',
+      args: [],
     );
   }
 }

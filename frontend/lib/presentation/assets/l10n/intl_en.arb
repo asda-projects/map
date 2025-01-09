@@ -36,6 +36,7 @@
   "noViews": "No Views",
   "channel": "Channel: {name}",
   "views": "{amount} Views",
-  "duration": "Duration: {amount}"
+  "duration": "Duration: {amount}",
+  "clipboardShareMusic": "🔗 Link copied to clipboard! 🎉"
 
 }

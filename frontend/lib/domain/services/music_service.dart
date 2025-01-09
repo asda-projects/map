@@ -68,6 +68,10 @@ class MusicService {
     }
     
   }
+
+  void likeMusic(Map data) {
+    _musicAdapter.likeMusic(data);
+  }
   
 
 }

@@ -30,13 +30,15 @@ class _MusicPlayerState extends State<MusicPlayer> {
   
   final AppLogger logger = AppLogger();
   final FirebaseAuthAdapter _firebaseAuthAdapter = FirebaseAuthAdapter();
-  
+
+   
 
   
 
   @override
   void initState() {
     super.initState();
+    
     _audioPlayer = AudioPlayer();
     
       _audioPlayer.processingStateStream.listen((state) async {
@@ -56,8 +58,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
   }
 
   Future<void> _loadMusic(String videoId) async {
-  String userId = _firebaseAuthAdapter.currentUser()!.uid;
-  final url = 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.reproduceAudio()}$userId/$videoId';
+  
+  final url = 'http://${LocalApiPath.baseUrl}${LocalApiPath.routes.reproduceAudio()}${userId()}/$videoId';
 
   try {
       // Set the URL and prepare the audio player
@@ -93,6 +95,12 @@ class _MusicPlayerState extends State<MusicPlayer> {
       });
       _loadMusic(widget.listMusic[widget.indexMusic]['video_id']);
     }
+  }
+  
+  String userId() {
+
+    return  _firebaseAuthAdapter.currentUser()!.uid; 
+
   }
 
   Duration totalDuration(String durationString) {
@@ -170,7 +178,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           
           children: [
-            LikeButton(),
+            LikeButton(
+              userId: userId(), 
+              musicData: widget.listMusic[widget.indexMusic],
+            ),
           PlayerControls(
             audioPlayer: _audioPlayer,
             onNext: _playNext,
@@ -338,12 +349,20 @@ class _LoadingIndicatorPlayerState extends State<LoadingIndicatorPlayer> {
           children: [
             Text(
               _formatDuration(_currentPosition),
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 16, 
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onSurface,
+                ),
             ),
             Spacer(),
             Text(
               _formatDuration(widget.totalDuration),
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 16, 
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onSurface,
+                )
             ),
           ],
         )

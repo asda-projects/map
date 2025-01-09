@@ -36,7 +36,9 @@
   "noViews": "Sem visualizações",
   "channel": "Canal: {name}",
   "views": "Visualizações: {amount}",
-  "duration": "Duração: {amount}"
+  "duration": "Duração: {amount}",
+  "clipboardShareMusic": "🔗 Link copiado para a área de transferência! 🎉"
+
 
 
 }

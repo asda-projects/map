@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m3(provider) => "Sign Up with ${provider}";
 
-  static String m4(amount) => "Views: ${amount}";
+  static String m4(amount) => "${amount} Views";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "authGreetingsSignUp": MessageLookupByLibrary.simpleMessage(
             "Join us now and listen your heart beats!"),
         "channel": m0,
+        "clipboardShareMusic": MessageLookupByLibrary.simpleMessage(
+            "🔗 Link copied to clipboard! 🎉"),
         "downloadedMusic": MessageLookupByLibrary.simpleMessage("Downloaded"),
         "duration": m1,
         "email": MessageLookupByLibrary.simpleMessage("Email"),

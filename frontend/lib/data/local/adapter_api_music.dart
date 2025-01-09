@@ -88,8 +88,20 @@ Future<List<Map<String, dynamic>>> searchVideos(String query) async {
 
  @override
  Future<MyHttpResponse> likeMusic(Map data) async {
-    
-    return MyHttpResponse(success: true, data:  'data', error: 'error');
+
+    final response = await request.get(
+    LocalApiPath.routes.likeMusic(),
+    params: {
+      "channel": data["channel"], 
+      "duration": data["duration"], 
+      "title": data["title"],
+      "video_id": data["video_id"],
+      "views": data["views"], 
+      "userId": data["userId"]
+      }
+  );
+    print(response);
+    return MyHttpResponse(success: true, data:  response, error: 'error');
  }
 
 }

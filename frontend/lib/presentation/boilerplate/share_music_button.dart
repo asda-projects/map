@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For Clipboard
 import 'package:frontend/data/utils/paths.dart';
+import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
 
 class ShareButton extends StatelessWidget {
   final String videoId; // The ID of the video
@@ -32,8 +33,11 @@ class ShareButton extends StatelessWidget {
 
     Clipboard.setData(ClipboardData(text: shareContent));
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Link copied to clipboard!'),
+       SnackBar(
+        content: Text(
+          S.of(context).clipboardShareMusic,
+          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary), // Ensures visibility on black background
+        ),
         duration: Duration(seconds: 2),
       ),
     );

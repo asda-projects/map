@@ -26,7 +26,11 @@ class _Routes {
   }
 
   String uploadAudio() {
-    return "/firestore/upload_music/";
+    return "/cloudinary/upload_music/";
+  }
+
+  String likeMusic() {
+    return "/music_likes/like_music";
   }
 
 }
