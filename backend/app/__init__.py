@@ -1,10 +1,11 @@
 from flask import Flask
 from flask_cors import CORS
-from app.presentation.controllers import reproduce, search, home
+from app.presentation.controllers import reproduce, search, home, music_likes
 
 from app.presentation.controllers import cloudinary as cloudinary_controller
 import cloudinary # type: ignore
 import os
+
 
 from dotenv import load_dotenv
 
@@ -16,7 +17,7 @@ def create_app():
     
     load_dotenv()
     
-    cred = credentials.Certificate('../serviceAccountKey.json')
+    cred = credentials.Certificate(f'{os.getcwd()}/app/serviceAccountKey.json')
     firebase_admin.initialize_app(cred)
     
     cloudinary.config( 
@@ -37,6 +38,7 @@ def create_app():
     app.register_blueprint(cloudinary_controller.cloudinary_bp, url_prefix=f"/{cloudinary_controller.name}")
     app.register_blueprint(reproduce.reproduce_bp, url_prefix=f"/{reproduce.name}")
     app.register_blueprint(search.search_bp, url_prefix=f"/{search.name}")
+    app.register_blueprint(music_likes.music_likes_bp, url_prefix=f"/{music_likes.name}")
     app.register_blueprint(home.home_bp) # main route does not need url_prefix
 
        

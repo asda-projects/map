@@ -12,7 +12,7 @@ from app.presentation.utils.http_response import MyJson
 def clean_text(text: str):
     """Normalize and clean text."""
     # Fix Unicode issues
-    text = fix_text(text)
+    text = fix_text(str(text))
     # Remove non-ASCII characters
     text = re.sub(r'[^\x00-\x7F]+', ' ', text)
     # Remove extra spaces

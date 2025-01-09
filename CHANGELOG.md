@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 0 -->⛰️  Features
 
--   **backend**:  Created a initial structure to api be able to consume file api server ([9177f61](9177f6120e89d6b2f4a96d4c7f08a1cef01f10bf))
+-   **frontend**:  Created button for  like music and share music ([aa4b801](aa4b8011c55137f46bcd394b7e0936a19b506e3f))
+-   **backend**:  Created a adpter for firestore ([581204f](581204ffb7e6ea3db8402f70b5cdecbc1c829ff2))
+-   **backend**:  Created a initial structure to api be able to consume file api server ([0d8473c](0d8473c553117d4ef4ed814c1288b2c23f223c79))
 -   **player**:  Add song progress slider and auto-play on readiness ([8249c71](8249c71f1f6409bd3c2e3602d23436e995a58aaa))
 -   **app**:  Add reusable LoadingBarSong widget with progress bar and timer ([eaee470](eaee470fec6332c254a012bee77514079f76ab29))
 -   **app**:  Initial integration between backend and frontend on uploading the music to firebase ([b91e6b9](b91e6b98c9d9a92d31b99b056291ff788cd86ad6))
