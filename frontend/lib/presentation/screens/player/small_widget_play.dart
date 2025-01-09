@@ -31,8 +31,6 @@ class SmallWidgetPlayState extends State<SmallWidgetPlay> {
     return  MusicPlayer(
             listMusic: widget.listMusic,
             indexMusic: widget.indexMusic,
-            
-
           );
 
 

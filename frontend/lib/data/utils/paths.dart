@@ -31,6 +31,13 @@ class _Routes {
 
 }
 
+class ExternalPath {
+  
+
+  static final youtubeWatchVideo = 'http://youtube.com/watch?v=';
+
+}
+
 class LocalApiPath {
   // Base URL details
   static const _url = '192.168.2.42';

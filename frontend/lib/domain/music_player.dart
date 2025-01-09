@@ -1,12 +1,16 @@
 
 
 
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/data/remote/firebase_auth_adpter.dart';
 import 'package:frontend/data/utils/paths.dart';
 import 'package:frontend/domain/services/logs.dart';
 import 'package:frontend/presentation/assets/l10n/generated/l10n.dart';
+import 'package:frontend/presentation/boilerplate/like_music_button.dart';
+import 'package:frontend/presentation/boilerplate/share_music_button.dart';
 import 'package:just_audio/just_audio.dart';
 
 
@@ -161,13 +165,25 @@ class _MusicPlayerState extends State<MusicPlayer> {
             widget.listMusic[widget.indexMusic]['duration']
           ))
           ),
-        SizedBox(height: 10),
+        SizedBox(height: 45),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          
+          children: [
+            LikeButton(),
           PlayerControls(
             audioPlayer: _audioPlayer,
             onNext: _playNext,
             onPrevious: _playPrevious,
             
           ),
+          ShareButton(
+            songTitle: widget.listMusic[widget.indexMusic]['title'] ?? S.of(context).noTitle, 
+            videoId: widget.listMusic[widget.indexMusic]['video_id'],
+            
+          ),
+          
+          ]),
         ]);
   }
 
@@ -272,18 +288,28 @@ class LoadingIndicatorPlayer extends StatefulWidget {
 
 class _LoadingIndicatorPlayerState extends State<LoadingIndicatorPlayer> {
   Duration _currentPosition = Duration.zero;
-
+  late StreamSubscription<Duration> _positionSubscription;
+  
   @override
   void initState() {
     super.initState();
 
     // Listen to the current position and update the UI
-    widget.audioPlayer.positionStream.listen((position) {
-      setState(() {
-        _currentPosition = position;
-      });
+    _positionSubscription = widget.audioPlayer.positionStream.listen((position) {
+      if (mounted) {
+        setState(() {
+          _currentPosition = position;
+        });
+      }
     });
     
+  }
+
+  @override
+  void dispose() {
+    // Cancel the subscription to avoid calling setState() after dispose
+    _positionSubscription.cancel();
+    super.dispose();
   }
 
   @override

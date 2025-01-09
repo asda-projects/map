@@ -1,11 +1,11 @@
 
 
-import 'package:frontend/data/local/interface_api_search_music.dart';
+import 'package:frontend/data/local/interface_api_music.dart';
 import 'package:frontend/data/utils/requests.dart';
 import 'package:frontend/data/utils/paths.dart';
 
 
-class MusicAdapter implements SearchMusicInterface {
+class MusicAdapter implements ApiMusicInterface {
 
 
 
@@ -84,6 +84,12 @@ Future<List<Map<String, dynamic>>> searchVideos(String query) async {
   } else {
     throw Exception('Failed to reproduce audio, status code ${response['statusCode']}');
   }
+ }
+
+ @override
+ Future<MyHttpResponse> likeMusic(Map data) async {
+    
+    return MyHttpResponse(success: true, data:  'data', error: 'error');
  }
 
 }
