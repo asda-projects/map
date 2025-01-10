@@ -3,7 +3,10 @@
 import 'package:frontend/data/local/interface_api_music.dart';
 import 'package:frontend/data/utils/requests.dart';
 import 'package:frontend/data/utils/paths.dart';
+import 'package:frontend/domain/services/logs.dart';
 
+
+AppLogger logger = AppLogger();
 
 class MusicAdapter implements ApiMusicInterface {
 
@@ -97,10 +100,11 @@ Future<List<Map<String, dynamic>>> searchVideos(String query) async {
       "title": data["title"],
       "video_id": data["video_id"],
       "views": data["views"], 
-      "userId": data["userId"]
+      "user_id": data["user_id"]
       }
   );
-    print(response);
+  
+    logger.debug("$response");
     return MyHttpResponse(success: true, data:  response, error: 'error');
  }
 

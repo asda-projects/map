@@ -43,6 +43,7 @@ All notable changes to this project will be documented in this file.
 
 ### <!-- 1 -->🐛 Bug Fixes
 
+-   **frontend**:  Changed name args on request service that was with wrong name ([c78687c](c78687c581658259bf8f5a9e6644a52d06ba8b9c))
 -   **backend**:  Resolve issue with duplicate audio duration during upload ([b77a887](b77a88780867bab870999bcc170d41871356c355))
 -   **frontend**:  Loading process icon running as wait to load music ([08b9992](08b99929b988fafda1d7c005429dead887fc4c25))
 -   **app**:  Fixed the reproduce process to play the song completely ([400a12c](400a12c492443cc891cd398869bd235ad8b8d1cc))

@@ -16,7 +16,7 @@ import 'package:frontend/presentation/boilerplate/listview.dart';
 
 
 
-
+AppLogger logger = AppLogger();
 
 
 
@@ -34,7 +34,7 @@ class SmallWidgetSearch extends StatefulWidget {
 class SmallWidgetSearchState extends State<SmallWidgetSearch>  {
   final TextEditingController _searchController = TextEditingController();
   
-  AppLogger logger = AppLogger();
+  
 
   Future<List<Map<String, dynamic>>>? _searchResults;
   MusicService? musicService;

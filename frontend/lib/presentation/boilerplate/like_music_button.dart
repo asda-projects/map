@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:frontend/domain/services/logs.dart';
 import 'package:frontend/domain/services/music_service.dart';
+
+
+AppLogger logger = AppLogger();
 
 class LikeButton extends StatefulWidget {
 
@@ -48,7 +52,9 @@ class _LikeButtonState extends State<LikeButton> {
 
   Map mappedPayload() {
 
-    widget.musicData['userId'] = widget.userId;
+    widget.musicData['user_id'] = widget.userId;
+
+    
 
     return  widget.musicData;
   }
