@@ -7,7 +7,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-db = current_app.config["FIRESTORE_DB"]
+
 
 
 T = TypeVar("T", bound="BaseModelAdapter")
@@ -40,12 +40,35 @@ class BaseModelAdapter:
             logger.info(f"Document with ID '{self.id}' deleted successfully.")
         except Exception as e:
             logger.error(f"Error deleting document: {e}")
+    
+    @classmethod
+    def query(cls: Type[T], filters: dict) -> list[T]:
+        """
+        Query the Firestore collection for documents matching the provided filters.
+
+        :param filters: Dictionary of field-value pairs for filtering.
+        :return: List of instances of the calling class.
+        """
+        query = cls.collection()
+        for field, value in filters.items():
+            query = query.where(field, "==", value)
+        results = []
+        for doc in query.stream():
+            data = doc.to_dict()
+            data["id"] = doc.id  # Add the document ID to the result
+            results.append(cls(**data))
+        return results
 
     @classmethod
     def collection(cls):
         if not cls.collection_name:
             raise ValueError("collection_name must be defined in the subclass.")
-        return db.collection(cls.collection_name)
+        return cls._get_firestore_db().collection(cls.collection_name)
+
+    @staticmethod
+    def _get_firestore_db():
+        """Retrieve the Firestore DB from the Flask application context."""
+        return current_app.config["FIRESTORE_DB"]
 
     def to_dict(self):
         # Use asdict to serialize the dataclass fields

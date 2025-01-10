@@ -1,10 +1,41 @@
 from io import BytesIO
+
+from cloudinary.api import resource
+
 import subprocess
 from typing import IO
-import cloudinary.uploader   # type: ignore
+import cloudinary.uploader
+from flask import Response
+import requests   # type: ignore
 from app.presentation.utils.http_response import MyJson
 from pydub import AudioSegment # type: ignore
 from io import BytesIO
+
+
+
+
+def buffer_cloudinary_resource(user_id: str, video_id: str) -> BytesIO | None:
+
+    
+    try:
+
+        file_path = f'users/{user_id}/audio_files/{video_id}'
+
+        resource_info = resource(file_path, resource_type="video")
+        file_url = resource_info.get("secure_url")
+    
+        # Download the file and load it into a BytesIO buffer
+        response = requests.get(file_url, stream=True)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        
+        buffer = BytesIO()
+        buffer.write(response.content)
+        buffer.seek(0)  # Reset the buffer's position to the start
+        return buffer
+
+    except Exception as e:
+        print(f"Download error: {e}")
+        return None
 
 def download_audio(video_id: str) -> bytes | None:
     command = [

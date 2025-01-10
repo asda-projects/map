@@ -3,6 +3,7 @@ from flask import Blueprint, request
 
 # from app.domain.services.music_likes_manager import delete_audio, upload_audio
 from app.presentation.utils.http_response import MyJson, jsonify_response
+from app.domain.services.music_likes_manager import like_audio
 
 
 name = __name__.split('.')[-1]
@@ -14,12 +15,12 @@ def like_music():
     
      # upload_audio(user_id=user_id,video_id=video_id)
     # print(request.args, type(request.args))
-    like_response =MyJson(
-                error="No Error", 
-                status_code=200, 
-                message="File liked successfully", 
-                data=request.args
-            )
+
+    data_args = dict(request.args)
+    
+
+    like_response = like_audio(data_args)
+
     return jsonify_response(response=like_response)
 
 
